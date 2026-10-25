@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ExoRehab Device Simulator</title>
+<meta name="theme-color" content="#E9EFF7">
+<link rel="icon" href="shared/logo-mark.svg">
+<link rel="stylesheet" href="shared/tokens.css">
+<style>
+body{min-height:100vh;padding:24px 16px 40px;background:radial-gradient(60% 50% at 80% 0%,#DCE9FF,transparent),var(--bg)}
+.wrap{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+.top{display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;text-decoration:none;color:var(--ink)}
+.brand img{width:40px;height:40px;border-radius:12px;box-shadow:0 8px 18px rgba(47,123,255,.3)}
+h1{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-top:12px}
+.lead{color:var(--ink-2);font-weight:500;line-height:1.6;max-width:720px;margin-top:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.card{padding:24px}
+.arm{height:420px;display:flex;justify-content:center}.arm svg{height:100%;width:auto}
+.status{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:14px;color:var(--muted)}
+.status i{width:10px;height:10px;border-radius:50%;background:var(--muted)}
+.status.on{color:var(--ok)}.status.on i{background:var(--ok);box-shadow:0 0 0 5px rgba(25,185,122,.18)}
+.status.err{color:var(--bad)}.status.err i{background:var(--bad)}
+.kv{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.kv div{background:rgba(255,255,255,.75);border-radius:16px;padding:12px 14px;box-shadow:0 6px 14px rgba(47,123,255,.1)}
+.kv small{display:block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.kv b{font-size:24px;font-weight:800}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.label{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.cfg{display:flex;flex-direction:column;gap:10px;margin-top:12px;font-weight:600;color:var(--ink-2)}
+.cfg b{color:var(--ink)}
+code{font-size:12.5px;background:#fff;border-radius:10px;padding:12px;display:block;white-space:pre-wrap;word-break:break-all;color:var(--ink-2);margin-top:10px;box-shadow:var(--inset)}
+.btn-stop{background:var(--bg);color:var(--bad);box-shadow:var(--raise-sm)}
+@media(max-width:800px){.grid{grid-template-columns:1fr}.arm{height:320px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="brand" href="index.html"><img src="shared/logo-mark.svg" alt="">Exo<span class="grad-text">Rehab</span></a>
+    <a class="btn btn-ghost" href="app.html" target="_blank">Open the app ↗</a>
+  </div>
+  <div>
+    <span class="chip">Virtual device · <span id="dev">exo-01</span></span>
+    <h1>ExoRehab device <span class="grad-text">simulator</span></h1>
+    <p class="lead">This page behaves like the ESP32 inside the exoskeleton: it streams joint angle, AI assistance, heart rate, repetitions and sEMG to Firebase Realtime Database 10 times per second. Open the app on another phone or laptop to watch it update live.</p>
+  </div>
+  <div class="grid">
+    <div class="card hero">
+      <div class="top"><span class="status" id="st"><i></i>Idle</span><span class="label" id="pk">0 packets</span></div>
+      <div class="arm" id="arm"></div>
+    </div>
+    <div class="card">
+      <div class="label">Live packet</div>
+      <div class="kv">
+        <div><small>Elbow</small><b id="vA">0°</b></div>
+        <div><small>AI assist</small><b id="vS">0%</b></div>
+        <div><small>Heart</small><b id="vH">0</b></div>
+        <div><small>Reps</small><b id="vR">0</b></div>
+        <div><small>Battery</small><b id="vB">100%</b></div>
+        <div><small>Session</small><b id="vT">00:00</b></div>
+      </div>
+      <div class="row">
+        <button class="btn btn-primary" id="go">▶ Start streaming</button>
+        <button class="btn btn-stop" id="end">■ End session & save</button>
+      </div>
+      <div class="label" style="margin-top:24px">Settings from the app</div>
+      <div class="cfg"><span>Mode: <b id="cM">aan</b></span><span>Max flexion: <b id="cL">120°</b></span><span>AI adaptive: <b id="cA">on</b></span></div>
+      <code id="raw">{}</code>
+    </div>
+  </div>
+</div>
+<script src="js/model.js"></script>
+<script src="js/exoarm.js"></script>
+<script type="module" src="js/firebase-live.js"></script>
+<script>
+(function () {
+  const $ = (s) => document.querySelector(s);
+  $("#arm").innerHTML = exoArmSVG("sim");
+  const cfg = { mode: "aan", maxFlexion: 120, aiAdaptive: true };
+  let on = false, t = 0, last = 0, sent = 0, maxA = 0, effSum = 0, n = 0, timer = null, batt = 100;
+  const fmt = (s) => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
+  const status = (cls, txt) => { $("#st").className = "status " + cls; $("#st").innerHTML = `<i></i>${txt}`; };
+
+  function tick() {
+    const now = performance.now(), dt = (now - last) / 1000; last = now;
+    t += dt; batt = Math.max(5, batt - dt * 0.004);
+    const mode = cfg.aiAdaptive === false && cfg.mode === "aan" ? "active" : cfg.mode;
+    const m = ExoModel.model(t, mode, cfg.maxFlexion);
+    const emg = Array.from({ length: 24 }, (_, i) => +ExoModel.emg(t - (23 - i) / 240, mode, cfg.maxFlexion).toFixed(3));
+    const pkt = { angle: +m.angle.toFixed(1), assist: +m.assist.toFixed(3), effort: +m.effort.toFixed(3), hr: Math.round(m.hr), reps: m.reps,
+                  battery: Math.round(batt), t: +t.toFixed(1), ts: Date.now(), mode, source: "sim", emg };
+    window.EXO_FB.publishLive(pkt).then(() => status("on", "Streaming to Firebase")).catch(() => status("err", "Write failed"));
+    sent++; maxA = Math.max(maxA, m.angle); effSum += m.effort; n++;
+    setElbow($("#arm"), m.angle, m.assist);
+    $("#vA").textContent = Math.round(m.angle) + "°"; $("#vS").textContent = Math.round(m.assist * 100) + "%";
+    $("#vH").textContent = pkt.hr; $("#vR").textContent = pkt.reps; $("#vB").textContent = pkt.battery + "%"; $("#vT").textContent = fmt(t);
+    $("#pk").textContent = sent.toLocaleString("en-US") + " packets";
+    $("#raw").textContent = JSON.stringify({ ...pkt, emg: `[${emg.length} samples]` });
+  }
+  function start() { on = true; last = performance.now(); timer = setInterval(tick, 100); $("#go").textContent = "❚❚ Pause streaming"; status("on", "Connecting…"); }
+  function pause() { on = false; clearInterval(timer); $("#go").textContent = "▶ Resume streaming"; status("", "Paused"); }
+  $("#go").onclick = () => (window.EXO_FB ? (on ? pause() : start()) : status("err", "Firebase not loaded"));
+  $("#end").onclick = () => {
+    if (n > 30 && window.EXO_FB) window.EXO_FB.pushSession({ ts: Date.now(), reps: ExoModel.model(t).reps, maxAngle: Math.round(maxA), effort: Math.round((effSum / n) * 100), durationS: Math.round(t), source: "sim" });
+    pause(); t = 0; maxA = 0; effSum = 0; n = 0; status("", "Session saved"); $("#vT").textContent = "00:00";
+  };
+  function ready() {
+    const F = window.EXO_FB; $("#dev").textContent = F.deviceId;
+    F.onConfig((c) => { Object.assign(cfg, c); $("#cM").textContent = cfg.mode; $("#cL").textContent = cfg.maxFlexion + "°"; $("#cA").textContent = cfg.aiAdaptive === false ? "off" : "on"; });
+  }
+  window.EXO_FB ? ready() : addEventListener("exofb-ready", ready, { once: true });
+  setElbow($("#arm"), 20, 0.4);
+})();
+</script>
+</body>
+</html>

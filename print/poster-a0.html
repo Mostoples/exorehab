@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>ExoRehab Poster A0</title>
+<link rel="stylesheet" href="../web/shared/tokens.css">
+<style>
+@page{size:841mm 1189mm;margin:0}
+:root{--rp:24px 24px 56px var(--sd),-24px -24px 56px #fff;--ap:0 30px 90px rgba(47,123,255,.25),0 0 0 3px rgba(255,255,255,.9) inset}
+html,body{width:3179px;height:4494px;overflow:hidden}
+body{position:relative;padding:90px 140px 60px;display:flex;flex-direction:column;gap:36px;font-size:36px;line-height:1.48}
+.card{border-radius:70px;box-shadow:var(--rp);padding:70px}
+.card.hero{box-shadow:var(--ap)}
+.chip{font-size:30px;padding:14px 30px;letter-spacing:.16em}
+.orb{z-index:-1}
+p,li{color:var(--ink-2);font-weight:500}
+b{color:var(--ink)}
+h2{font-size:74px;line-height:1.08;font-weight:800;letter-spacing:-.03em;margin:22px 0 26px}
+.num{display:flex;align-items:center;gap:26px}
+.num i{font-style:normal;width:92px;height:92px;border-radius:28px;background:var(--grad);color:#fff;font-weight:800;font-size:48px;display:grid;place-items:center;box-shadow:0 16px 30px rgba(47,123,255,.35)}
+
+header{display:flex;flex-direction:column;gap:38px}
+.hrow{display:flex;justify-content:space-between;align-items:center}
+.lock{display:flex;align-items:center;gap:40px}
+.lock img{width:200px;height:200px;filter:drop-shadow(0 26px 40px rgba(47,123,255,.35))}
+.word{font-size:166px;font-weight:800;letter-spacing:-.04em;line-height:.9}
+.word-sub{font-size:40px;font-weight:700;letter-spacing:.34em;color:var(--ink-2);margin-top:22px;text-transform:uppercase}
+.schools{display:flex;flex-direction:column;gap:20px;align-items:flex-end}
+.schools span{display:flex;align-items:center;gap:16px;font-weight:800;font-size:42px;padding:22px 36px;border-radius:999px;background:var(--bg);box-shadow:var(--rp)}
+.schools svg{color:var(--blue)}
+.title{font-size:104px;line-height:1.06;font-weight:800;letter-spacing:-.035em}
+.subtitle{font-size:56px;font-weight:700;color:var(--ink-2);line-height:1.2;margin-top:16px}
+.team{display:grid;grid-template-columns:repeat(5,1fr);gap:34px}
+.tm{display:flex;align-items:center;gap:24px;padding:26px 30px;border-radius:44px}
+.av{width:104px;height:104px;flex:none;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:38px;color:#fff;background:var(--grad);box-shadow:0 0 0 7px #fff}
+.tm.s3 .av{background:linear-gradient(135deg,#2A9FCB,#19B97A)}
+.tm b{display:block;font-size:34px;line-height:1.2}.tm small{display:block;font-size:26px;color:var(--muted);font-weight:600;margin-top:4px}
+
+section{zoom:.9}
+.rowA{display:grid;grid-template-columns:1.25fr 1fr;gap:70px}
+.visual{position:relative;height:980px;display:flex;justify-content:center;align-items:flex-start;padding:30px}
+.visual .arm{height:1070px;width:auto;margin-top:-20px}
+.visual .arm svg{height:100%;width:auto}
+.tagf{position:absolute;padding:30px 40px;border-radius:40px;background:rgba(246,249,254,.95);box-shadow:var(--rp)}
+.tagf small{display:block;font-size:26px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.tagf b{font-size:76px;font-weight:800;line-height:1.1}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:36px}
+.stat{padding:38px 36px;border-radius:50px}
+.stat b{display:block;font-size:92px;font-weight:800;letter-spacing:-.04em;line-height:1.1}
+.stat p{font-size:30px;font-weight:600;line-height:1.35;margin-top:10px}
+.src{font-size:24px;color:var(--muted);margin-top:16px}
+
+.rowB{display:grid;grid-template-columns:1.25fr 1fr;gap:70px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:10px}
+.step{padding:38px 34px;border-radius:50px;position:relative}
+.step .n{width:84px;height:84px;border-radius:26px;background:var(--grad);color:#fff;font-weight:800;font-size:42px;display:grid;place-items:center;margin-bottom:26px;box-shadow:0 14px 26px rgba(47,123,255,.35)}
+.step b{font-size:46px}.step p{font-size:30px;line-height:1.45;margin-top:12px}
+.loop{margin-top:36px;display:flex;align-items:center;gap:22px;font-weight:700;color:var(--blue);font-size:32px}
+.loop .bar{flex:1;height:8px;border-radius:9px;background:linear-gradient(90deg,var(--sky),var(--blue))}
+.eq{margin:26px 0;padding:36px 50px;border-radius:44px;background:#fff;box-shadow:var(--ap);font-size:54px;font-weight:800;text-align:center;color:var(--ink)}
+.eq em{font-style:normal;color:var(--blue)}
+.eq small{display:block;font-size:28px;color:var(--muted);font-weight:600;margin-top:12px}
+ul.k{list-style:none;display:flex;flex-direction:column;gap:22px}
+ul.k li{display:flex;gap:22px;align-items:flex-start}
+ul.k li span{flex:none;width:54px;height:54px;border-radius:50%;background:var(--ice);color:var(--blue);display:grid;place-items:center;margin-top:2px}
+
+.rowC{display:grid;grid-template-columns:1.25fr 1fr;gap:70px}
+.phones{display:flex;gap:46px;justify-content:center;margin-top:20px}
+.ph{width:420px;height:700px;border-radius:72px;padding:20px;background:linear-gradient(145deg,#fff,#D5E1F2);box-shadow:var(--ap),30px 40px 80px rgba(40,80,160,.25);position:relative;overflow:hidden}
+.ph iframe{width:390px;height:844px;border:0;border-radius:54px;transform:scale(.974);transform-origin:0 0;background:var(--bg)}
+.caps{display:flex;gap:46px;justify-content:center;margin-top:30px}.caps span{width:420px;text-align:center;font-weight:800;font-size:32px}
+.arch{display:flex;flex-direction:column;gap:24px;margin-top:20px}
+.ar-row{display:flex;align-items:center;gap:22px}
+.nd{flex:1;padding:26px 30px;border-radius:40px;display:flex;align-items:center;gap:26px}
+.nd span{flex:none;width:84px;height:84px;border-radius:26px;display:grid;place-items:center;background:var(--ice);color:var(--blue)}
+.nd.main span{background:var(--grad);color:#fff}
+.nd b{display:block;font-size:38px}.nd small{font-size:28px;color:var(--muted);font-weight:600}
+.down{text-align:center;color:var(--blue);height:30px;font-size:28px;line-height:30px}
+
+.rowD{display:grid;grid-template-columns:1.25fr 1fr;gap:70px}
+.eco{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.ec{padding:40px;border-radius:44px;display:flex;gap:28px;align-items:flex-start}
+.ec span{flex:none;width:84px;height:84px;border-radius:26px;display:grid;place-items:center;background:#D9F5EA;color:var(--ok)}
+.ec b{font-size:38px;display:block}.ec p{font-size:30px;line-height:1.45;margin-top:8px}
+.sdg{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:10px}
+.sd{border-radius:36px;padding:28px 24px;color:#fff;font-weight:800;font-size:28px;line-height:1.25;min-height:160px;display:flex;flex-direction:column;justify-content:space-between}
+.sd big{font-size:72px;line-height:1}
+.plan{display:flex;gap:16px;margin-top:30px}
+.plan div{flex:1;padding:24px 22px;border-radius:30px;background:var(--bg);box-shadow:var(--rp);font-size:27px;font-weight:600;color:var(--ink-2)}
+.plan b{display:block;font-size:30px;color:var(--blue)}
+
+footer{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-size:30px;color:var(--muted);font-weight:600;border-top:3px solid #D5E1F2;padding-top:28px}
+footer .fl{display:flex;align-items:center;gap:20px;color:var(--ink);font-weight:800;font-size:40px}
+footer img{width:70px;height:70px}
+</style></head>
+<body>
+<div class="orb" style="width:2200px;height:2200px;right:-900px;top:-700px"></div>
+<div class="orb" style="width:1800px;height:1800px;left:-900px;top:1500px;opacity:.7"></div>
+<div class="orb" style="width:1800px;height:1800px;right:-800px;bottom:-600px;opacity:.6"></div>
+
+<header>
+  <div class="hrow">
+    <div class="lock"><img src="../web/shared/logo-mark.svg"><div><div class="word">Exo<span class="grad-text">Rehab</span></div><div class="word-sub">Exoskeleton Rehabilitation</div></div></div>
+    <div class="schools" id="schools"></div>
+  </div>
+  <div>
+    <div class="title" id="title"></div>
+    <div class="subtitle" id="subtitle"></div>
+  </div>
+  <div class="team" id="team"></div>
+</header>
+
+<section class="rowA">
+  <div class="card hero visual">
+    <div class="arm" id="arm"></div>
+    <div class="tagf" style="left:70px;bottom:70px"><small>Elbow angle</small><b>72°</b></div>
+    <div class="tagf" style="right:70px;bottom:300px"><small>AI assist</small><b class="grad-text">38%</b></div>
+    <div class="tagf" style="right:70px;bottom:70px"><small>Patient effort</small><b style="color:var(--ok)">62%</b></div>
+  </div>
+  <div>
+    <div class="num"><i>1</i><span class="chip">Background</span></div>
+    <h2>Stroke takes away movement.<br><span class="grad-text">Therapy is hard to reach.</span></h2>
+    <p>Hemiparesis — weakness on one side of the body — is the most common motor effect of stroke. Recovery depends on <b>hundreds of guided repetitions</b>, yet therapists, clinic time and travel are limited, especially once patients return home. Most existing rehabilitation robots are large, expensive and stay in hospitals.</p>
+    <div class="stats" id="stats"></div>
+    <p class="src" id="src"></p>
+  </div>
+</section>
+
+<section class="rowB">
+  <div>
+    <div class="num"><i>2</i><span class="chip">How it works</span></div>
+    <h2>A closed loop that follows <span class="grad-text">the patient's intention.</span></h2>
+    <div class="steps" id="steps"></div>
+    <div class="loop"><span>Repeats every 50 ms</span><div class="bar"></div><span>↻</span></div>
+  </div>
+  <div>
+    <div class="num"><i>3</i><span class="chip">AI adaptive assistance</span></div>
+    <h2>Help only <span class="grad-text">as much as needed.</span></h2>
+    <div class="eq">τ<sub>motor</sub> = (1 − <em>ê</em>) · τ<sub>task</sub><small>ê = patient effort estimated by AI from sEMG + joint kinematics</small></div>
+    <ul class="k">
+      <li><span data-i="ai"></span><p>A lightweight model on the ESP32 classifies muscle activity and movement into an <b>effort score</b>.</p></li>
+      <li><span data-i="chart"></span><p>As the patient improves, assistance <b>fades automatically</b> — keeping therapy challenging but safe.</p></li>
+      <li><span data-i="shield"></span><p>Fatigue or spasm detection <b>raises assistance or soft-stops</b> the actuator.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="rowC">
+  <div>
+    <div class="num"><i>4</i><span class="chip">Real-time IoT monitoring app</span></div>
+    <h2>Every session, <span class="grad-text">live and measurable.</span></h2>
+    <div class="phones">
+      <div class="ph"><iframe src="../web/app.html?rec&screen=session&t=6.2&nonav" scrolling="no"></iframe></div>
+      <div class="ph"><iframe src="../web/app.html?rec&screen=progress&t=6&nonav" scrolling="no"></iframe></div>
+      <div class="ph"><iframe src="../web/app.html?rec&screen=monitor&t=6&nonav" scrolling="no"></iframe></div>
+    </div>
+    <div class="caps"><span>Live digital twin</span><span>Progress analytics</span><span>Care-team monitor</span></div>
+  </div>
+  <div>
+    <div class="num"><i>5</i><span class="chip">System architecture</span></div>
+    <h2>From muscle signal <span class="grad-text">to care team.</span></h2>
+    <div class="arch">
+      <div class="ar-row"><div class="card nd"><span data-i="pulse"></span><div><b>Sensors</b><small>sEMG · IMU · force · heart rate</small></div></div></div>
+      <div class="down" data-i2="down">▼</div>
+      <div class="ar-row"><div class="card hero nd main"><span data-i="cpu"></span><div><b>ESP32-S3 edge AI</b><small>effort estimation · control · safety</small></div></div></div>
+      <div class="down">▼</div>
+      <div class="ar-row"><div class="card nd"><span data-i="bolt"></span><div><b>Elbow actuator</b><small>assist-as-needed torque</small></div></div><div class="card nd"><span data-i="cloud"></span><div><b>IoT cloud</b><small>MQTT · TLS</small></div></div></div>
+      <div class="down">▼</div>
+      <div class="ar-row"><div class="card nd"><span data-i="user"></span><div><b>Therapist</b><small>live dashboard</small></div></div><div class="card nd"><span data-i="heart"></span><div><b>Patient & family</b><small>progress · alerts</small></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="rowD">
+  <div>
+    <div class="num"><i>6</i><span class="chip">Sustainability</span></div>
+    <h2>Built to last, <span class="grad-text">built to be fixed.</span></h2>
+    <div class="eco">
+      <div class="card ec"><span data-i="recycle"></span><div><b>Recycled materials</b><p>3D-printed recycled PETG frame, washable replaceable cuffs.</p></div></div>
+      <div class="card ec"><span data-i="wrench"></span><div><b>Modular & repairable</b><p>Cuffs, battery and actuator snap apart for repair.</p></div></div>
+      <div class="card ec"><span data-i="bolt"></span><div><b>Low-power</b><p>Edge AI on a microcontroller, deep sleep, USB-C charging.</p></div></div>
+      <div class="card ec"><span data-i="home"></span><div><b>Fewer trips</b><p>Home therapy with remote monitoring reduces travel.</p></div></div>
+    </div>
+  </div>
+  <div>
+    <div class="num"><i>7</i><span class="chip">Impact & research plan</span></div>
+    <h2>Toward the <span class="grad-text">SDGs.</span></h2>
+    <div class="sdg">
+      <div class="sd" style="background:#4C9F38"><big>3</big>Good Health & Well-being</div>
+      <div class="sd" style="background:#FD6925"><big>9</big>Industry, Innovation & Infrastructure</div>
+      <div class="sd" style="background:#DD1367"><big>10</big>Reduced Inequalities</div>
+      <div class="sd" style="background:#BF8B2E"><big>12</big>Responsible Consumption</div>
+    </div>
+    <div class="plan"><div><b>01</b>Literature & patient criteria</div><div><b>02</b>Design & prototype</div><div><b>03</b>AI model & IoT app</div><div><b>04</b>Testing & evaluation</div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="fl"><img src="../web/shared/logo-mark.svg">ExoRehab · <span id="yr"></span></div>
+  <div>Student research prototype — not a certified medical device. App data shown is simulated.</div>
+</footer>
+
+<script src="../web/shared/content.js"></script>
+<script src="../web/js/icons.js"></script>
+<script src="../web/js/exoarm.js"></script>
+<script>
+const E = EXO, $ = s => document.querySelector(s);
+document.querySelectorAll("[data-i]").forEach(e => e.innerHTML = icon(e.dataset.i, e.closest(".k") ? 30 : 44));
+$("#schools").innerHTML = E.schools.map(s => `<span>${icon("school", 44)}${s}</span>`).join("");
+$("#title").innerHTML = `${E.titleLead}<br><span class="grad-text">${E.condition} Rehabilitation</span>`;
+$("#subtitle").textContent = E.titleTail.replace(/^Rehabilitation /, "");
+const ini = n => n.replace(/[^A-Za-z ]/g, "").split(" ").filter(Boolean).slice(0, 2).map(w => w[0]).join("");
+$("#team").innerHTML = E.team.map(m => `<div class="card tm ${m.school.includes("3") ? "s3" : ""}"><div class="av">${ini(m.name)}</div><div><b>${m.name}</b><small>${m.detail} · ${m.school.replace("SMA Negeri", "SMAN")}</small></div></div>`).join("");
+$("#stats").innerHTML = E.stats.map(s => `<div class="card stat"><b class="grad-text">${s.value}</b><p>${s.label}</p></div>`).join("");
+$("#src").textContent = "Sources: " + E.stats.map(s => s.src).join(" · ");
+$("#steps").innerHTML = E.steps.map((s, i) => `<div class="card step"><div class="n">${i + 1}</div><b>${s.k}</b><p>${s.d}</p></div>`).join("");
+$("#arm").innerHTML = exoArmSVG("pa", { labels: true }); setElbow($("#arm"), 72, .8);
+$("#yr").textContent = E.year;
+</script>
+</body></html>

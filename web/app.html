@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ExoRehab App</title>
+<meta name="theme-color" content="#E9EFF7">
+<link rel="icon" href="shared/logo-mark.svg">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div class="phone" id="phone">
+  <header class="top">
+    <img src="shared/logo-mark.svg" class="top-logo" alt="">
+    <div class="top-text"><div class="hello">Good morning</div><div class="who">Patient P-017 · <span id="side">Left side</span></div></div>
+    <button class="round" id="bell" aria-label="Alerts"><span data-i="bell"></span><i class="dot"></i></button>
+  </header>
+
+  <main>
+  <!-- HOME -->
+  <section class="screen active" data-screen="home">
+    <div class="card hero status">
+      <div class="st-row"><span class="live" id="h-status"><i></i>Demo mode</span><span class="muted sm" id="h-batt">Battery 86%</span></div>
+      <div class="st-main">
+        <div class="ring-wrap">
+          <svg viewBox="0 0 120 120" class="ring"><circle cx="60" cy="60" r="50" class="ring-bg"/><circle cx="60" cy="60" r="50" class="ring-fg" id="goalRing"/></svg>
+          <div class="ring-val"><b id="h-reps">24</b><span>/ 40 reps</span></div>
+        </div>
+        <div class="st-side">
+          <div class="label">Today's goal</div>
+          <div class="big">Elbow flex<br><span class="grad-text">& extend</span></div>
+          <button class="btn btn-primary sm" onclick="APP.go('session');APP.start()"><span data-i="play"></span>Start session</button>
+        </div>
+      </div>
+    </div>
+    <div class="grid3">
+      <div class="card mini"><div class="mv" id="h-rom">0–92°</div><div class="ml">Range of motion</div></div>
+      <div class="card mini"><div class="mv" id="h-eff">61%</div><div class="ml">Own effort</div></div>
+      <div class="card mini"><div class="mv">5 <small>days</small></div><div class="ml">Streak</div></div>
+    </div>
+    <div class="card insight">
+      <div class="ins-ic"><span data-i="ai"></span></div>
+      <div><div class="label">AI insight</div><p>Assistance dropped <b>4%</b> this week while range of motion grew <b>+6°</b>. Your arm is doing more of the work — keep going!</p></div>
+    </div>
+    <div class="sec-title">Upcoming</div>
+    <div class="card list">
+      <div class="li"><span class="li-ic"><span data-i="pulse"></span></span><div><b>Session 2 · Assist-as-needed</b><small>16:00 · 15 min · 40 reps</small></div><span class="tag">Today</span></div>
+      <div class="li"><span class="li-ic"><span data-i="user"></span></span><div><b>Tele-review with therapist</b><small>Thu · 10:00 · video call</small></div><span class="tag soft">Thu</span></div>
+    </div>
+  </section>
+
+  <!-- SESSION -->
+  <section class="screen" data-screen="session">
+    <div class="card hero twin">
+      <div class="twin-head"><span class="chip" id="s-src">Demo · Digital twin</span><span class="muted sm" id="s-timer">00:00</span></div>
+      <div class="twin-body">
+        <div id="twin"></div>
+        <div class="twin-stats">
+          <div><small>Elbow</small><b id="s-angle">0°</b></div>
+          <div><small>Reps</small><b id="s-reps">0</b></div>
+          <div><small>Heart</small><b id="s-hr">78</b><em>bpm</em></div>
+        </div>
+      </div>
+    </div>
+    <div class="card assist">
+      <div class="as-top"><div><div class="label">AI adaptive assistance</div><div class="as-val"><b id="s-assist">40</b>% motor · <span class="ok" id="s-effort">60</span>% you</div></div><span class="ai-badge"><span data-i="ai"></span>Auto</span></div>
+      <div class="split"><i id="s-bar-you"></i><i id="s-bar-motor"></i></div>
+      <div class="legend"><span><i class="k-you"></i>Patient effort</span><span><i class="k-mot"></i>Motor assist</span></div>
+    </div>
+    <div class="card emg">
+      <div class="as-top"><div class="label">Biceps sEMG · 1 kHz</div><span class="muted sm" id="s-emg">0.42 mV</span></div>
+      <canvas id="emg" width="680" height="150"></canvas>
+    </div>
+    <div class="seg" id="mode">
+      <button data-m="passive">Passive</button><button data-m="aan" class="on">Adaptive AI</button><button data-m="active">Active</button>
+    </div>
+    <div class="ctrl">
+      <button class="btn btn-primary" id="runBtn" onclick="APP.toggle()"><span data-i="pause"></span><span>Pause</span></button>
+      <button class="btn stopbtn" onclick="APP.stop()"><span data-i="stop"></span>Soft stop</button>
+    </div>
+  </section>
+
+  <!-- PROGRESS -->
+  <section class="screen" data-screen="progress">
+    <div class="ttl"><span class="chip">Progress</span><h2>Getting stronger<br><span class="grad-text">every week</span></h2></div>
+    <div class="card chartcard">
+      <div class="as-top"><div class="label">Max elbow flexion (°)</div><span class="up">+18° in 6 wks</span></div>
+      <svg id="romChart" viewBox="0 0 340 170"></svg>
+    </div>
+    <div class="card chartcard">
+      <div class="as-top"><div class="label">Patient effort vs motor assist</div></div>
+      <svg id="effChart" viewBox="0 0 340 150"></svg>
+      <div class="legend"><span><i class="k-you"></i>Patient effort</span><span><i class="k-mot"></i>Motor assist</span></div>
+    </div>
+    <div class="sec-title">Session history</div>
+    <div class="card list" id="history"></div>
+  </section>
+
+  <!-- MONITOR -->
+  <section class="screen" data-screen="monitor">
+    <div class="ttl"><span class="chip">IoT Monitor</span><h2>Shared live with<br><span class="grad-text">your care team</span></h2></div>
+    <div class="card hero net">
+      <div class="node"><span data-i="cpu"></span><b>ExoRehab</b><small>ESP32-S3</small></div>
+      <div class="flow"><i></i><i></i><i></i></div>
+      <div class="node"><span data-i="cloud"></span><b>Cloud</b><small>Firebase RTDB</small></div>
+      <div class="flow"><i></i><i></i><i></i></div>
+      <div class="node"><span data-i="user"></span><b>Therapist</b><small>Dashboard</small></div>
+    </div>
+    <div class="grid2">
+      <div class="card mini"><div class="mv" id="m-lat">42 <small>ms</small></div><div class="ml">Stream latency</div></div>
+      <div class="card mini"><div class="mv" id="m-pk">1,284</div><div class="ml">Packets today</div></div>
+    </div>
+    <div class="sec-title">Alerts</div>
+    <div class="card list" id="alerts">
+      <div class="li"><span class="li-ic ok"><span data-i="check"></span></span><div><b>Session 1 completed</b><small>40 reps · avg effort 58% · 08:12</small></div></div>
+      <div class="li"><span class="li-ic warn"><span data-i="bolt"></span></span><div><b>Mild fatigue detected</b><small>AI raised assistance +8% for 2 min · 08:07</small></div></div>
+      <div class="li"><span class="li-ic"><span data-i="heart"></span></span><div><b>Heart rate normal</b><small>72–96 bpm during therapy</small></div></div>
+    </div>
+    <div class="sec-title">Care team access</div>
+    <div class="card list">
+      <div class="li"><span class="avatar">TR</span><div><b>Physiotherapist</b><small>Full data · can adjust limits</small></div><span class="tag">Live</span></div>
+      <div class="li"><span class="avatar alt">FM</span><div><b>Family member</b><small>Summary & alerts only</small></div><span class="tag soft">Daily</span></div>
+    </div>
+  </section>
+
+  <!-- DEVICE -->
+  <section class="screen" data-screen="device">
+    <div class="ttl"><span class="chip">Device</span><h2>Your exoskeleton,<br><span class="grad-text">your settings</span></h2></div>
+    <div class="card dev">
+      <div class="dev-img" id="devArm"></div>
+      <div class="dev-info"><b>ExoRehab Arm · v0.3</b><small>Firmware 0.3.2 · Prototype</small>
+        <div class="batt"><span data-i="battery"></span><div class="bt"><i style="width:86%"></i></div><b>86%</b></div>
+      </div>
+    </div>
+    <div class="card list set">
+      <label class="li"><div><b>AI adaptive assistance</b><small>Adjust motor torque to your effort</small></div><input type="checkbox" class="tg" data-cfg="aiAdaptive" checked></label>
+      <label class="li"><div><b>Spasm safety stop</b><small>Release torque on sudden resistance</small></div><input type="checkbox" class="tg" data-cfg="spasmStop" checked></label>
+      <label class="li"><div><b>Share with therapist</b><small>Real-time IoT streaming</small></div><input type="checkbox" class="tg" data-cfg="shareTherapist" checked></label>
+      <div class="li col"><div class="row"><b>Max flexion limit</b><b class="blue" id="limV">120°</b></div><input type="range" min="60" max="135" value="120" id="lim"></div>
+    </div>
+    <div class="card eco">
+      <div class="label">Sustainable build</div>
+      <div class="eco-row"><span class="eco-ic"><span data-i="recycle"></span></span><div><b>Recycled PETG frame</b><small>3D-printed from recycled filament</small></div></div>
+      <div class="eco-row"><span class="eco-ic"><span data-i="wrench"></span></span><div><b>Modular & repairable</b><small>Swap cuffs, straps and actuator</small></div></div>
+      <div class="eco-row"><span class="eco-ic"><span data-i="bolt"></span></span><div><b>Low-power electronics</b><small>Deep-sleep ESP32 · USB-C charging</small></div></div>
+    </div>
+    <p class="disclaimer">Device <b id="devId">exo-01</b> · <a href="simulator.html">Open virtual device simulator</a><br>Research prototype for a student project. Not a certified medical device.</p>
+  </section>
+  </main>
+
+  <nav class="tabs">
+    <button data-go="home" class="on"><span data-i="home"></span><small>Home</small></button>
+    <button data-go="session"><span data-i="pulse"></span><small>Session</small></button>
+    <button data-go="progress"><span data-i="chart"></span><small>Progress</small></button>
+    <button data-go="monitor"><span data-i="iot"></span><small>Monitor</small></button>
+    <button data-go="device"><span data-i="gear"></span><small>Device</small></button>
+  </nav>
+</div>
+<script src="shared/content.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/exoarm.js"></script>
+<script src="js/model.js"></script>
+<script type="module" src="js/firebase-live.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

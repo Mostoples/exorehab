@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>ExoRehab Trifold Brochure</title>
+<link rel="stylesheet" href="../web/shared/tokens.css">
+<style>
+@page{size:297mm 210mm;margin:0}
+:root{--rb:5px 5px 12px var(--sd),-5px -5px 12px #fff;--ab:0 8px 22px rgba(47,123,255,.22),0 0 0 1px rgba(255,255,255,.9) inset}
+body{background:#fff;font-size:10.5px;line-height:1.5}
+.sheet{width:1123px;height:794px;display:grid;grid-template-columns:repeat(3,1fr);position:relative;overflow:hidden;background:var(--bg);page-break-after:always;break-after:page}
+.sheet:last-child{page-break-after:auto;break-after:auto}
+.panel{position:relative;padding:40px 30px 30px;display:flex;flex-direction:column;gap:14px;overflow:hidden}
+.panel+.panel{border-left:1px dashed rgba(131,146,174,.25)}
+.card{border-radius:18px;box-shadow:var(--rb);padding:14px}
+.card.hero{box-shadow:var(--ab)}
+.chip{font-size:9px;padding:5px 10px}
+h2{font-size:23px;line-height:1.12;font-weight:800;letter-spacing:-.025em}
+h3{font-size:13px;font-weight:800}
+p{color:var(--ink-2);font-weight:500}
+.orb{z-index:0}.panel>*:not(.orb){position:relative;z-index:1}
+.ic{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:var(--ice);color:var(--blue);flex:none}
+.ic.g{background:#D9F5EA;color:var(--ok)}.ic.b{background:var(--grad);color:#fff}
+.row{display:flex;gap:10px;align-items:flex-start}.row b{display:block;font-size:11.5px}.row p{font-size:10px;line-height:1.45}
+
+/* cover */
+.cover{justify-content:space-between;background:radial-gradient(120% 70% at 70% 30%,#fff,#DCE9FF 60%,var(--bg))}
+.lock{display:flex;align-items:center;gap:12px}
+.lock img{width:56px;height:56px;filter:drop-shadow(0 8px 14px rgba(47,123,255,.35))}
+.word{font-size:40px;font-weight:800;letter-spacing:-.035em;line-height:1}
+.ws{font-size:8.5px;font-weight:700;letter-spacing:.3em;color:var(--ink-2);margin-top:4px}
+.cover .arm{height:330px;display:flex;justify-content:center;margin:-6px 0}
+.cover .arm svg{height:100%;width:auto}
+.ctitle{font-size:24px;line-height:1.12;font-weight:800;letter-spacing:-.02em}
+.csub{font-size:11px;color:var(--ink-2);font-weight:600;margin-top:6px}
+.cschools{display:flex;flex-direction:column;gap:6px}
+.cschools span{display:flex;align-items:center;gap:8px;font-weight:800;font-size:10.5px}
+.cschools svg{color:var(--blue)}
+
+/* team */
+.team{display:flex;flex-direction:column;gap:9px}
+.tm{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:14px}
+.av{width:34px;height:34px;flex:none;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:12px;color:#fff;background:var(--grad);box-shadow:0 0 0 3px #fff}
+.tm.s3 .av{background:linear-gradient(135deg,#2A9FCB,#19B97A)}
+.tm b{display:block;font-size:11px;line-height:1.25}.tm small{font-size:9px;color:var(--muted);font-weight:600}
+.disc{font-size:8.5px;color:var(--muted);margin-top:auto}
+.paper{font-size:10px;font-weight:700;line-height:1.45;color:var(--ink)}
+.paper em{font-style:normal;color:var(--blue)}
+
+.sdg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sd{border-radius:12px;padding:9px 10px;color:#fff;font-weight:800;font-size:9.5px;line-height:1.2;display:flex;gap:8px;align-items:center}
+.sd big{font-size:22px}
+
+/* inside */
+.stat{padding:12px 14px;display:flex;gap:12px;align-items:center}
+.stat b{font-size:30px;font-weight:800;letter-spacing:-.03em;min-width:92px}
+.stat p{font-size:10px;font-weight:600;line-height:1.35}
+.src{font-size:7.5px;color:var(--muted)}
+.steps{display:flex;flex-direction:column;gap:8px}
+.step{display:flex;gap:10px;padding:10px 12px;border-radius:14px;align-items:flex-start}
+.step .n{width:26px;height:26px;border-radius:9px;background:var(--grad);color:#fff;font-weight:800;font-size:12px;display:grid;place-items:center;flex:none}
+.step b{font-size:11.5px}.step p{font-size:9.6px;line-height:1.4}
+.eq{padding:10px;border-radius:14px;background:#fff;box-shadow:var(--ab);text-align:center;font-weight:800;font-size:16px}
+.eq em{font-style:normal;color:var(--blue)}.eq small{display:block;font-size:8px;color:var(--muted);font-weight:600}
+.appv{display:flex;gap:12px;align-items:flex-start}
+.ph{width:150px;height:300px;flex:none;border-radius:26px;padding:7px;background:linear-gradient(145deg,#fff,#D5E1F2);box-shadow:var(--ab),8px 12px 24px rgba(40,80,160,.22);overflow:hidden}
+.ph iframe{width:390px;height:844px;border:0;transform:scale(.3502);transform-origin:0 0;border-radius:56px}
+.ph .in{width:136px;height:286px;overflow:hidden;border-radius:20px}
+.feats{display:flex;flex-direction:column;gap:9px}
+.cta{margin-top:auto;padding:14px;border-radius:18px;background:var(--grad);color:#fff;box-shadow:0 10px 22px rgba(47,123,255,.35)}
+.cta b{font-size:14px;display:block}.cta p{color:#DDEBFF;font-size:9.5px;margin-top:3px}
+.chk{list-style:none;display:flex;flex-direction:column;gap:6px}
+.chk li{display:flex;gap:7px;align-items:center;font-size:10px;font-weight:600;color:var(--ink)}
+.chk li span{width:16px;height:16px;border-radius:50%;background:#D9F5EA;color:var(--ok);display:grid;place-items:center;flex:none}
+</style></head>
+<body>
+<!-- OUTSIDE: inner flap | back | front cover -->
+<div class="sheet">
+  <div class="panel">
+    <div class="orb" style="width:380px;height:380px;left:-160px;bottom:-120px"></div>
+    <span class="chip" style="align-self:flex-start">Sustainability</span>
+    <h2>Built to last,<br><span class="grad-text">built to be fixed.</span></h2>
+    <p>ExoRehab is designed so rehabilitation technology is affordable, repairable and kinder to the planet.</p>
+    <div class="row card"><span class="ic g" data-i="recycle"></span><div><b>Recycled materials</b><p>3D-printed recycled PETG frame and washable, replaceable cuffs.</p></div></div>
+    <div class="row card"><span class="ic g" data-i="wrench"></span><div><b>Modular & repairable</b><p>Cuffs, battery and actuator snap apart — fix a part, not the device.</p></div></div>
+    <div class="row card"><span class="ic g" data-i="bolt"></span><div><b>Low-power electronics</b><p>Edge AI on an ESP32, deep sleep between sessions, USB-C charging.</p></div></div>
+    <div class="row card"><span class="ic g" data-i="home"></span><div><b>Fewer hospital trips</b><p>Remote monitoring brings therapy home.</p></div></div>
+    <h3 style="margin-top:4px">Supporting the SDGs</h3>
+    <div class="sdg">
+      <div class="sd" style="background:#4C9F38"><big>3</big>Good Health & Well-being</div>
+      <div class="sd" style="background:#FD6925"><big>9</big>Industry & Innovation</div>
+      <div class="sd" style="background:#DD1367"><big>10</big>Reduced Inequalities</div>
+      <div class="sd" style="background:#BF8B2E"><big>12</big>Responsible Consumption</div>
+    </div>
+  </div>
+  <div class="panel">
+    <span class="chip" style="align-self:flex-start">The team</span>
+    <h2>Students from<br><span class="grad-text">Surakarta.</span></h2>
+    <div class="team" id="team"></div>
+    <div class="card" style="padding:12px 14px"><div class="label" style="font-size:8px;font-weight:800;letter-spacing:.14em;color:var(--muted);margin-bottom:4px">WORKING PAPER TITLE</div><div class="paper" id="paper"></div></div>
+    <h3>Key features</h3>
+    <div id="feats" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+    <p class="disc">ExoRehab is a student research prototype and concept, not a certified medical device. App data shown is simulated. Title and patient criteria are still being refined.</p>
+  </div>
+  <div class="panel cover">
+    <div class="orb" style="width:460px;height:460px;right:-170px;top:60px"></div>
+    <div class="lock"><img src="../web/shared/logo-mark.svg"><div><div class="word">Exo<span class="grad-text">Rehab</span></div><div class="ws">EXOSKELETON REHABILITATION</div></div></div>
+    <div class="arm" id="coverArm"></div>
+    <div>
+      <div class="ctitle">Smart exoskeleton for<br><span class="grad-text">post-stroke recovery.</span></div>
+      <div class="csub">AI-driven adaptive assistance · Real-time IoT monitoring · Sustainable design</div>
+    </div>
+    <div class="cschools" id="schools"></div>
+  </div>
+</div>
+
+<!-- INSIDE: problem | how it works | app -->
+<div class="sheet">
+  <div class="panel">
+    <div class="orb" style="width:420px;height:420px;left:-200px;top:-140px"></div>
+    <span class="chip" style="align-self:flex-start">01 · The problem</span>
+    <h2>Stroke takes away movement.<br><span class="grad-text">Therapy is hard to reach.</span></h2>
+    <p>Hemiparesis — weakness on one side of the body — is the most common motor effect of stroke. Recovery needs hundreds of guided repetitions, but therapists, clinic time and travel are limited, especially once patients go home.</p>
+    <div id="stats" style="display:flex;flex-direction:column;gap:10px"></div>
+    <p class="src" id="src"></p>
+    <div class="card hero" style="padding:12px 14px"><h3>Our answer</h3><p style="font-size:10px;margin-top:3px">A lightweight upper-limb exoskeleton that <b>follows the patient's intention</b>, gives only the help that is missing, and keeps the care team informed — at home.</p></div>
+  </div>
+  <div class="panel">
+    <span class="chip" style="align-self:flex-start">02 · How it works</span>
+    <h2>Sense, think,<br><span class="grad-text">assist, monitor.</span></h2>
+    <div class="steps" id="steps"></div>
+    <span class="chip" style="align-self:flex-start;margin-top:4px">03 · AI adaptive assistance</span>
+    <div class="eq">τ<sub>motor</sub> = (1 − <em>ê</em>) · τ<sub>task</sub><small>ê = patient effort estimated from sEMG + joint motion</small></div>
+    <p style="font-size:10px">As the patient gets stronger, motor help <b>fades automatically</b>. Fatigue or spasm raises assistance or triggers a soft stop.</p>
+    <div class="row card"><span class="ic" data-i="shield"></span><div><b>Safety first</b><p>Mechanical joint limits, spasm detection and an instant soft-stop button protect the patient.</p></div></div>
+    <div class="row card"><span class="ic" data-i="target"></span><div><b>Upper-limb focus</b><p>Elbow flexion–extension with a tendon-assisted glove for grip practice.</p></div></div>
+  </div>
+  <div class="panel">
+    <div class="orb" style="width:420px;height:420px;right:-200px;bottom:-80px"></div>
+    <span class="chip" style="align-self:flex-start">04 · The app</span>
+    <h2>Every session,<br><span class="grad-text">live & measurable.</span></h2>
+    <div class="appv">
+      <div class="ph"><div class="in"><iframe src="../web/app.html?rec&screen=session&t=6.2&nonav" scrolling="no"></iframe></div></div>
+      <ul class="chk">
+        <li><span data-i="check"></span>Live digital twin</li>
+        <li><span data-i="check"></span>sEMG muscle signal</li>
+        <li><span data-i="check"></span>AI assist vs. effort</li>
+        <li><span data-i="check"></span>Heart rate & reps</li>
+        <li><span data-i="check"></span>Weekly progress</li>
+        <li><span data-i="check"></span>Therapist alerts</li>
+      </ul>
+    </div>
+    <div class="row card" style="padding:10px 12px"><span class="ic b" data-i="iot"></span><div><b>Real-time IoT</b><p>ESP32 → MQTT/TLS cloud → therapist & family dashboards.</p></div></div>
+    <div class="row card" style="padding:10px 12px"><span class="ic" data-i="chart"></span><div><b>Progress analytics</b><p>Range of motion, effort and consistency trends in weekly reports.</p></div></div>
+    <div class="cta"><b>Try the live demo</b><p>Open the ExoRehab web app — demo data runs right in your browser.</p></div>
+  </div>
+</div>
+
+<script src="../web/shared/content.js"></script>
+<script src="../web/js/icons.js"></script>
+<script src="../web/js/exoarm.js"></script>
+<script>
+const E = EXO, $ = s => document.querySelector(s);
+document.querySelectorAll("[data-i]").forEach(e => e.innerHTML = icon(e.dataset.i, e.closest(".chk") ? 10 : 16));
+const ini = n => n.replace(/[^A-Za-z ]/g, "").split(" ").filter(Boolean).slice(0, 2).map(w => w[0]).join("");
+$("#team").innerHTML = E.team.map(m => `<div class="card tm ${m.school.includes("3") ? "s3" : ""}"><div class="av">${ini(m.name)}</div><div><b>${m.name}</b><small>${m.detail} · ${m.school}</small></div></div>`).join("");
+$("#paper").innerHTML = `${E.product}: ${E.titleLead} <em>${E.condition}</em> ${E.titleTail}`;
+$("#schools").innerHTML = E.schools.map(s => `<span>${icon("school", 15)}${s}</span>`).join("");
+$("#stats").innerHTML = E.stats.map(s => `<div class="card stat"><b class="grad-text">${s.value}</b><p>${s.label}</p></div>`).join("");
+$("#feats").innerHTML = E.features.map(f => `<span class="pill" style="font-size:9.5px;padding:5px 9px">${icon(f.i, 11)}${f.t}</span>`).join("");
+$("#src").textContent = "Sources: " + E.stats.map(s => s.src).join(" · ");
+$("#steps").innerHTML = E.steps.map((s, i) => `<div class="card step"><span class="n">${i + 1}</span><div><b>${s.k}</b><p>${s.d}</p></div></div>`).join("");
+$("#coverArm").innerHTML = exoArmSVG("cv"); setElbow($("#coverArm"), 68, .8);
+</script>
+</body></html>

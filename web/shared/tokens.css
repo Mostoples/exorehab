@@ -1,0 +1,28 @@
+/* ExoRehab design tokens — shared by web app, landing page, poster, brochure and showreel */
+@font-face{font-family:"Plus Jakarta Sans";src:url("fonts/PlusJakartaSans.ttf") format("truetype");font-weight:200 800;font-display:swap}
+:root{
+  --bg:#E9EFF7; --bg-2:#F3F6FB; --sd:#C6D2E3; --sl:#FFFFFF;
+  --ink:#16233F; --ink-2:#4A5A7A; --muted:#8392AE;
+  --blue:#2F7BFF; --deep:#1646D6; --sky:#8CC6FF; --ice:#DDEBFF; --aqua:#2A9FCB;
+  --ok:#19B97A; --warn:#F5A524; --bad:#EF4E5E;
+  --r-lg:28px; --r-md:20px; --r-sm:14px;
+  --raise:9px 9px 20px var(--sd),-9px -9px 20px var(--sl);
+  --raise-sm:5px 5px 12px var(--sd),-5px -5px 12px var(--sl);
+  --inset:inset 4px 4px 9px var(--sd),inset -4px -4px 9px var(--sl);
+  --aura:0 14px 40px rgba(47,123,255,.22),0 0 0 1px rgba(255,255,255,.9) inset;
+  --grad:linear-gradient(135deg,#2F7BFF,#1646D6);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --font:"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}
+.card{background:linear-gradient(160deg,#F6F9FE,var(--bg));border-radius:var(--r-lg);box-shadow:var(--raise)}
+.card.hero{box-shadow:var(--aura);background:radial-gradient(120% 120% at 20% 0%,#fff,#DCE9FF)}
+.btn{display:inline-flex;align-items:center;gap:10px;border:0;cursor:pointer;font:700 15px var(--font);padding:14px 24px;border-radius:999px;text-decoration:none;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:0 10px 24px rgba(47,123,255,.35)}
+.btn-ghost{background:var(--bg);color:var(--ink);box-shadow:var(--raise-sm)}
+.btn:hover{transform:translateY(-2px)}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.chip{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);background:var(--ice);padding:7px 14px;border-radius:999px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:13px;color:var(--ink-2);background:var(--bg);box-shadow:var(--raise-sm);padding:8px 14px;border-radius:999px}
+.orb{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(47,123,255,.28),rgba(140,198,255,.12) 45%,transparent 70%);pointer-events:none;filter:blur(6px)}

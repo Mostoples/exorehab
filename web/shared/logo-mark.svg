@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="ExoRehab logo">
+  <defs>
+    <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3C88FF"/><stop offset="1" stop-color="#1646D6"/></linearGradient>
+    <linearGradient id="hl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  </defs>
+  <rect x="8" y="8" width="240" height="240" rx="64" fill="url(#lg)"/>
+  <rect x="8" y="8" width="240" height="240" rx="64" fill="url(#hl)"/>
+  <!-- assist arc -->
+  <path d="M100 216 A62 62 0 0 0 158 120" fill="none" stroke="#8CC6FF" stroke-width="12" stroke-linecap="round"/>
+  <path d="M146 112 L170 112 L160 136 Z" fill="#8CC6FF" transform="rotate(18 158 120)"/>
+  <!-- exoskeleton links: upper arm + forearm -->
+  <line x1="78" y1="54" x2="96" y2="160" stroke="#fff" stroke-width="28" stroke-linecap="round"/>
+  <line x1="96" y1="160" x2="196" y2="104" stroke="#fff" stroke-width="28" stroke-linecap="round"/>
+  <!-- smart joint -->
+  <circle cx="96" cy="160" r="27" fill="#fff"/>
+  <circle cx="96" cy="160" r="15" fill="url(#lg)"/>
+  <circle cx="96" cy="160" r="5" fill="#fff"/>
+  <!-- IoT pulse at the hand -->
+  <circle cx="196" cy="104" r="8" fill="#1646D6"/>
+  <path d="M212 78 A30 30 0 0 1 222 112" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".9"/>
+</svg>

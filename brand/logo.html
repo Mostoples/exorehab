@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>ExoRehab Brand</title>
+<link rel="stylesheet" href="../web/shared/tokens.css">
+<style>
+body{padding:40px;display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;background:var(--bg)}
+.v{padding:30px;display:inline-flex;align-items:center;gap:26px}
+.mark{width:200px;height:200px}
+.word{font-weight:800;font-size:96px;letter-spacing:-.03em;line-height:1}
+.word b{font-weight:800}
+.sub{font-weight:700;font-size:20px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-2);margin-top:10px}
+#lockup-white{background:var(--deep);border-radius:30px}
+#lockup-white .word{color:#fff}#lockup-white .word b{color:#8CC6FF;-webkit-text-fill-color:#8CC6FF}
+#lockup-white .sub{color:#DDEBFF}
+#stacked{flex-direction:column;text-align:center;gap:20px}
+.arm{width:420px}
+</style></head><body>
+<div id="mark" class="v" style="padding:0"><img class="mark" style="width:1024px;height:1024px" src="../web/shared/logo-mark.svg"></div>
+<div id="lockup" class="v"><img class="mark" src="../web/shared/logo-mark.svg"><div><div class="word">Exo<b class="grad-text">Rehab</b></div><div class="sub">Exoskeleton Rehabilitation</div></div></div>
+<div id="lockup-white" class="v"><img class="mark" src="../web/shared/logo-mark.svg"><div><div class="word">Exo<b>Rehab</b></div><div class="sub">Exoskeleton Rehabilitation</div></div></div>
+<div id="stacked" class="v"><img class="mark" src="../web/shared/logo-mark.svg"><div><div class="word" style="font-size:80px">Exo<b class="grad-text">Rehab</b></div><div class="sub" style="font-size:16px">Exoskeleton Rehabilitation</div></div></div>
+<div id="arms" class="v"><div class="arm" id="a1"></div><div class="arm" id="a2"></div><div class="arm" id="a3"></div></div>
+<script src="../web/js/exoarm.js"></script>
+<script>
+[["a1",10],["a2",60],["a3",115]].forEach(([id,d])=>{const e=document.getElementById(id);e.innerHTML=exoArmSVG(id,{labels:id==="a2"});setElbow(e,d,.7)});
+</script>
+</body></html>

@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>ExoRehab Showreel</title>
+<link rel="stylesheet" href="../web/shared/tokens.css">
+<style>
+html,body{width:1920px;height:1080px;overflow:hidden}
+body{position:relative;background:var(--bg)}
+.scene{position:absolute;inset:0;opacity:0;display:flex;align-items:center;padding:0 140px;gap:90px}
+.orb{z-index:0}
+.scene>*{position:relative;z-index:1}
+.chip{font-size:18px;padding:10px 20px}
+h1{font-size:96px;line-height:1.02;font-weight:800;letter-spacing:-.035em;margin:24px 0}
+h2{font-size:78px;line-height:1.05;font-weight:800;letter-spacing:-.035em;margin:22px 0}
+.lead{font-size:28px;line-height:1.5;color:var(--ink-2);font-weight:500;max-width:760px}
+.pills{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}.pills .pill{font-size:20px;padding:12px 22px}
+.pill svg{color:var(--blue)}
+.center{flex-direction:column;justify-content:center;text-align:center}
+.card{border-radius:36px}
+/* intro */
+.logo-big{width:250px;height:250px;filter:drop-shadow(0 30px 50px rgba(47,123,255,.4))}
+.word{font-size:150px;font-weight:800;letter-spacing:-.045em;line-height:1}
+.wsub{font-size:28px;font-weight:700;letter-spacing:.42em;color:var(--ink-2);margin-top:14px}
+/* stats */
+.stats{display:flex;gap:40px;margin-top:50px}
+.stat{width:450px;padding:44px 40px;text-align:left}
+.stat b{font-size:96px;font-weight:800;letter-spacing:-.04em;display:block;line-height:1.05}
+.stat p{font-size:24px;color:var(--ink-2);font-weight:600;margin-top:12px;line-height:1.35}
+/* product */
+.stage{width:820px;height:900px;display:flex;justify-content:center;align-items:center;flex:none}
+.stage .arm{height:960px}.stage .arm svg{height:100%;width:auto}
+.txt{flex:1}
+.lab{position:absolute;padding:16px 22px;background:rgba(246,249,254,.96);border-radius:22px;box-shadow:var(--raise)}
+.lab small{display:block;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.lab b{font-size:40px;font-weight:800}
+/* steps */
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:20px}
+.step{padding:30px 32px;display:flex;gap:22px;align-items:flex-start}
+.step .n{width:62px;height:62px;flex:none;border-radius:20px;background:var(--grad);color:#fff;font-weight:800;font-size:28px;display:grid;place-items:center;box-shadow:0 12px 24px rgba(47,123,255,.35)}
+.step b{font-size:30px}.step p{font-size:20px;line-height:1.45;color:var(--ink-2);font-weight:500;margin-top:6px}
+/* phone */
+.phone{width:440px;height:900px;flex:none;border-radius:70px;padding:16px;background:linear-gradient(145deg,#fff,#D5E1F2);box-shadow:var(--aura),30px 40px 80px rgba(40,80,160,.28);position:relative}
+.phone iframe{width:408px;height:868px;border:0;border-radius:56px;background:var(--bg)}
+.phone .notch{position:absolute;top:30px;left:50%;transform:translateX(-50%);width:120px;height:30px;border-radius:20px;background:#16233F;z-index:3}
+.feat-list{display:flex;flex-direction:column;gap:18px;margin-top:34px}
+.fi{display:flex;gap:18px;align-items:center;font-size:26px;font-weight:700}
+.fi span{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:var(--ice);color:var(--blue)}
+/* eco */
+.eco{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:50px;width:100%}
+.ec{padding:40px 34px;text-align:left}
+.ec .i{width:70px;height:70px;border-radius:22px;display:grid;place-items:center;background:#D9F5EA;color:var(--ok);margin-bottom:22px}
+.ec b{font-size:28px;display:block}.ec p{font-size:20px;color:var(--ink-2);line-height:1.45;margin-top:8px;font-weight:500}
+/* team */
+.team{display:grid;grid-template-columns:repeat(5,1fr);gap:26px;margin-top:50px;width:100%}
+.tm{padding:36px 20px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.av{width:110px;height:110px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:38px;color:#fff;background:var(--grad);box-shadow:0 14px 28px rgba(47,123,255,.32),0 0 0 7px #fff;margin-bottom:22px}
+.tm.s3 .av{background:linear-gradient(135deg,#2A9FCB,#19B97A)}
+.tm b{font-size:24px;line-height:1.25}.tm small{font-size:17px;color:var(--muted);font-weight:600;margin:8px 0 14px}
+.sch{font-size:16px;font-weight:800;color:var(--blue);background:var(--ice);padding:8px 14px;border-radius:999px;margin-top:auto}
+.tm.s3 .sch{color:#0E8A5B;background:#D9F5EA}
+/* outro */
+.ptitle{font-size:34px;font-weight:700;line-height:1.4;max-width:1400px;margin-top:40px;color:var(--ink)}
+.ptitle em{font-style:normal;color:var(--blue)}
+</style></head>
+<body>
+<div class="orb" id="orbA" style="width:1300px;height:1300px;right:-300px;top:-400px"></div>
+<div class="orb" id="orbB" style="width:1000px;height:1000px;left:-400px;bottom:-500px;opacity:.7"></div>
+
+<!-- 1 intro -->
+<section class="scene center" data-s="0" data-e="5.2">
+  <img class="logo-big" src="../web/shared/logo-mark.svg" data-in="0.2" data-fx="pop">
+  <div class="word" data-in="0.8" style="margin-top:40px">Exo<span class="grad-text">Rehab</span></div>
+  <div class="wsub" data-in="1.3">EXOSKELETON REHABILITATION</div>
+  <div class="pills" data-in="2.0" style="justify-content:center"><span class="pill"><span data-i="ai"></span>AI adaptive</span><span class="pill"><span data-i="iot"></span>Real-time IoT</span><span class="pill"><span data-i="leaf"></span>Sustainable</span></div>
+</section>
+
+<!-- 2 problem -->
+<section class="scene center" data-s="5" data-e="11.2">
+  <span class="chip" data-in="0.2">01 · The problem</span>
+  <h2 data-in="0.4">Stroke takes away movement.<br><span class="grad-text">Therapy is hard to reach.</span></h2>
+  <div class="stats" id="stats"></div>
+</section>
+
+<!-- 3 product -->
+<section class="scene" data-s="11" data-e="19.2">
+  <div class="stage" data-in="0.1"><div class="arm" id="armP"></div>
+    <div class="lab" id="labA" style="left:30px;bottom:150px" data-in="1.2"><small>Elbow angle</small><b id="pA">72°</b></div>
+    <div class="lab" style="right:20px;bottom:230px" data-in="1.6"><small>AI assist</small><b class="grad-text" id="pS">38%</b></div>
+  </div>
+  <div class="txt">
+    <span class="chip" data-in="0.3">Meet ExoRehab</span>
+    <h1 data-in="0.5" style="font-size:82px">A smart exoskeleton<br><span class="grad-text">that adapts to you.</span></h1>
+    <p class="lead" data-in="0.8">A lightweight upper-limb exoskeleton for stroke survivors with one-sided weakness — helping only as much as each patient needs.</p>
+    <div class="pills" data-in="1.2"><span class="pill">sEMG sensors</span><span class="pill">Smart elbow actuator</span><span class="pill">ESP32 edge AI</span></div>
+  </div>
+</section>
+
+<!-- 4 how -->
+<section class="scene" data-s="19" data-e="26.2" style="flex-direction:column;justify-content:center;align-items:stretch;gap:0">
+  <div style="text-align:center"><span class="chip" data-in="0.2">02 · How it works</span>
+  <h2 data-in="0.4">Sense, think, <span class="grad-text">assist, monitor.</span></h2></div>
+  <div class="steps" id="steps"></div>
+</section>
+
+<!-- 5-7 app -->
+<section class="scene" data-s="26" data-e="45.2" id="appScene" style="padding-left:200px">
+  <div class="phone" data-in="0.1" data-fx="rise"><div class="notch"></div><iframe id="app" src="../web/app.html?rec"></iframe></div>
+  <div class="txt" style="position:relative;height:600px">
+    <div class="apptxt" data-w="0" style="position:absolute;inset:0">
+      <span class="chip">03 · The app</span>
+      <h1>Live digital twin,<br><span class="grad-text">every repetition.</span></h1>
+      <div class="feat-list"><div class="fi"><span data-i="pulse"></span>Joint angle, reps & heart rate</div><div class="fi"><span data-i="ai"></span>AI assist vs. patient effort</div><div class="fi"><span data-i="chart"></span>sEMG muscle signal at 1 kHz</div></div>
+    </div>
+    <div class="apptxt" data-w="6.5" style="position:absolute;inset:0">
+      <span class="chip">04 · Progress</span>
+      <h1>Recovery you<br><span class="grad-text">can measure.</span></h1>
+      <div class="feat-list"><div class="fi"><span data-i="target"></span>Range of motion week by week</div><div class="fi"><span data-i="chart"></span>Assistance fades as strength grows</div><div class="fi"><span data-i="check"></span>Complete session history</div></div>
+    </div>
+    <div class="apptxt" data-w="13" style="position:absolute;inset:0">
+      <span class="chip">05 · Real-time IoT</span>
+      <h1>Shared live with<br><span class="grad-text">the care team.</span></h1>
+      <div class="feat-list"><div class="fi"><span data-i="cloud"></span>ESP32 → MQTT/TLS cloud</div><div class="fi"><span data-i="bell"></span>Fatigue & safety alerts</div><div class="fi"><span data-i="user"></span>Therapist & family access</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 eco -->
+<section class="scene center" data-s="45" data-e="51.2">
+  <span class="chip" data-in="0.2">06 · Sustainability</span>
+  <h2 data-in="0.4">Built to last, <span class="grad-text">built to be fixed.</span></h2>
+  <div class="eco">
+    <div class="card ec" data-in="0.8"><div class="i" data-i="recycle"></div><b>Recycled PETG</b><p>3D-printed frame from recycled filament.</p></div>
+    <div class="card ec" data-in="1.0"><div class="i" data-i="wrench"></div><b>Modular</b><p>Swap cuffs, battery and actuator.</p></div>
+    <div class="card ec" data-in="1.2"><div class="i" data-i="bolt"></div><b>Low-power</b><p>Edge AI, deep sleep, USB-C charging.</p></div>
+    <div class="card ec" data-in="1.4"><div class="i" data-i="home"></div><b>Home therapy</b><p>Fewer trips with remote monitoring.</p></div>
+  </div>
+</section>
+
+<!-- 9 team -->
+<section class="scene center" data-s="51" data-e="57.2">
+  <span class="chip" data-in="0.2">07 · The team</span>
+  <h2 data-in="0.4">Students from <span class="grad-text">Surakarta, Indonesia.</span></h2>
+  <div class="team" id="team"></div>
+</section>
+
+<!-- 10 outro -->
+<section class="scene center" data-s="57" data-e="64">
+  <img class="logo-big" src="../web/shared/logo-mark.svg" style="width:190px;height:190px" data-in="0.2" data-fx="pop">
+  <div class="word" style="font-size:120px;margin-top:30px" data-in="0.5">Exo<span class="grad-text">Rehab</span></div>
+  <div class="ptitle" id="ptitle" data-in="1.0"></div>
+  <div class="pills" data-in="1.6" style="justify-content:center"><span class="pill">Move again, smarter.</span></div>
+</section>
+
+<script src="../web/shared/content.js"></script>
+<script src="../web/js/icons.js"></script>
+<script src="../web/js/exoarm.js"></script>
+<script>
+const E = EXO, $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+document.querySelectorAll("[data-i]").forEach(e => e.innerHTML = icon(e.dataset.i, e.classList.contains("i") ? 34 : 24));
+$("#stats").innerHTML = E.stats.map((s, i) => `<div class="card stat" data-in="${0.9 + i * 0.3}"><b class="grad-text">${s.value}</b><p>${s.label}</p></div>`).join("");
+$("#steps").innerHTML = E.steps.map((s, i) => `<div class="card step" data-in="${0.9 + i * 0.35}"><span class="n">${i + 1}</span><div><b>${s.k}</b><p>${s.d}</p></div></div>`).join("");
+const ini = n => n.replace(/[^A-Za-z ]/g, "").split(" ").filter(Boolean).slice(0, 2).map(w => w[0]).join("");
+$("#team").innerHTML = E.team.map((m, i) => `<div class="card tm ${m.school.includes("3") ? "s3" : ""}" data-in="${0.8 + i * 0.22}"><div class="av">${ini(m.name)}</div><b>${m.name}</b><small>${m.detail}</small><span class="sch">${m.school}</span></div>`).join("");
+$("#ptitle").innerHTML = `${E.product}: ${E.titleLead} <em>${E.condition}</em> ${E.titleTail}`;
+$("#armP").innerHTML = exoArmSVG("rp", { labels: true });
+
+const clamp = x => Math.max(0, Math.min(1, x));
+const ease = x => 1 - Math.pow(1 - clamp(x), 3);
+const FADE = 0.5;
+window.DURATION = 63;
+window.setTime = function (t) {
+  $$(".scene").forEach(sc => {
+    const s = +sc.dataset.s, e = +sc.dataset.e, lt = t - s;
+    const op = Math.min(clamp(lt / FADE), clamp((e - t) / FADE));
+    sc.style.opacity = s === 0 ? Math.min(clamp((e - t) / FADE), 1) : op;
+    sc.style.visibility = op > 0 || s === 0 && t < e ? "visible" : "hidden";
+    sc.style.transform = `scale(${1 + 0.012 * clamp(lt / (e - s))})`;
+    sc.querySelectorAll("[data-in]").forEach(el => {
+      const k = ease((lt - +el.dataset.in) / 0.7);
+      el.style.opacity = k;
+      el.style.transform = el.dataset.fx === "pop" ? `scale(${0.6 + 0.4 * k})` : `translateY(${(1 - k) * 40}px)`;
+    });
+  });
+  // product arm
+  const lp = t - 11, p = (lp % 4) / 4, ang = 10 + 92 * (0.5 - 0.5 * Math.cos(2 * Math.PI * p)), as = 0.38 + 0.05 * Math.sin(lp / 2);
+  setElbow($("#armP"), ang, as); $("#pA").textContent = Math.round(ang) + "°"; $("#pS").textContent = Math.round(as * 100) + "%";
+  // app scene
+  const at = t - 26;
+  if (at > -1 && at < 20) {
+    const w = at < 6.5 ? 0 : at < 13 ? 1 : 2;
+    $$(".apptxt").forEach((el, i) => {
+      const st = +el.dataset.w, en = i < 2 ? +$$(".apptxt")[i + 1].dataset.w : 99;
+      const k = Math.min(ease((at - st - 0.3) / 0.6), clamp((en - at) / 0.35));
+      el.style.opacity = k; el.style.transform = `translateX(${(1 - Math.min(1, ease((at - st - 0.3) / 0.6))) * 60}px)`;
+    });
+    try {
+      const A = $("#app").contentWindow.APP;
+      A.go(["session", "progress", "monitor"][w]);
+      A.setTime(Math.max(0, at) + 2);
+    } catch (e) {}
+  }
+  $("#orbA").style.transform = `translate(${Math.sin(t / 6) * 60}px,${Math.cos(t / 7) * 40}px)`;
+  $("#orbB").style.transform = `translate(${Math.cos(t / 5) * 50}px,${Math.sin(t / 8) * 40}px)`;
+};
+setTime(0);
+</script>
+</body></html>

@@ -1,0 +1,11 @@
+# Firebase
+.firebase/
+firebase-debug.log*
+database-debug.log*
+# temporary previews / render cache
+output/_*
+output/_frames/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

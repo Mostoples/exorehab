@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Exolution reel cards</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../web/shared/tokens.css">
+<style>
+html,body{width:1920px;height:1080px;margin:0;background:transparent;overflow:hidden}
+body{font-family:var(--font)}
+.full{position:absolute;inset:0;background:radial-gradient(60% 70% at 50% 45%,#fff 0%,#E4EEFC 50%,#E9EFF7 80%)}
+.ring{position:absolute;left:50%;top:46%;width:760px;height:760px;transform:translate(-50%,-50%);border-radius:50%;border:2px solid rgba(47,123,255,.22);box-shadow:0 0 120px rgba(47,123,255,.14) inset}
+.center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.logo{width:200px;height:200px;filter:drop-shadow(0 30px 50px rgba(47,123,255,.4))}
+.word{font-family:Unbounded;font-weight:600;font-size:140px;letter-spacing:-.04em;line-height:1;margin-top:34px;color:var(--ink)}
+.word b{font-weight:600;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-weight:800;font-size:24px;letter-spacing:.42em;color:var(--ink-2);margin-top:22px;text-transform:uppercase}
+.eyebrow{display:inline-flex;align-items:center;gap:16px;font-size:18px;font-weight:800;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-2)}
+.eyebrow::before,.eyebrow::after{content:"";width:40px;height:1.5px;background:currentColor;opacity:.5}
+/* lower third */
+.lt{position:absolute;left:96px;bottom:90px;max-width:900px;padding:34px 40px 36px;border-radius:30px;background:rgba(255,255,255,.78);backdrop-filter:blur(18px);border:1.5px solid rgba(255,255,255,.95);box-shadow:0 30px 70px -24px rgba(22,50,120,.35)}
+.lt .chip{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--deep);background:var(--ice);padding:8px 16px;border-radius:999px}
+.lt .chip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.lt h2{font-family:Unbounded;font-size:58px;line-height:1.05;letter-spacing:-.03em;margin:18px 0 0;color:var(--ink)}
+.lt h2 span{display:block}.lt h2 .l2{font-weight:300;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lt p{font-size:24px;color:var(--ink-2);font-weight:500;margin:16px 0 0;line-height:1.45}
+.lt.right{left:auto;right:96px}
+.outro .title{max-width:1400px;font-size:30px;font-weight:700;line-height:1.45;color:var(--ink);margin-top:34px}
+.outro .title em{font-style:normal;color:var(--blue)}
+.team{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;justify-content:center;max-width:1600px}
+.team span{font-size:19px;font-weight:700;color:var(--ink);background:rgba(255,255,255,.8);border:1.5px solid #fff;box-shadow:0 14px 30px -16px rgba(22,50,120,.35);padding:10px 18px;border-radius:999px}
+.team span small{color:var(--muted);font-weight:600;margin-left:6px}
+.url{margin-top:30px;font-family:Unbounded;font-weight:500;font-size:28px;color:var(--blue)}
+</style></head>
+<body>
+<div id="root"></div>
+<script src="../web/shared/content.js"></script>
+<script>
+const P = JSON.parse(decodeURIComponent(location.hash.slice(1) || "{}")), E = EXO, root = document.getElementById("root");
+if (P.kind === "intro") {
+  root.innerHTML = `<div class="full"></div><div class="ring"></div><div class="center">
+    <img class="logo" src="../web/shared/logo-mark.svg"><div class="word">Exo<b>lution</b></div><div class="sub">${E.expansion}</div></div>`;
+} else if (P.kind === "outro") {
+  const short = (s) => s.replace("SMA Negeri", "SMAN");
+  root.innerHTML = `<div class="full"></div><div class="center outro">
+    <p class="eyebrow">Student research project · ${E.year}</p>
+    <div class="word" style="font-size:110px">Exo<b>lution</b></div>
+    <div class="title">${E.product}: ${E.titleLead} <em>${E.condition}</em> ${E.titleTail}</div>
+    <div class="team">${E.team.map((m) => `<span>${m.name}<small>${short(m.school)}</small></span>`).join("")}</div>
+    <div class="url">exolution-id.web.app</div></div>`;
+} else {
+  root.innerHTML = `<div class="lt ${P.right ? "right" : ""}"><span class="chip">${P.chip}</span><h2><span>${P.l1}</span><span class="l2">${P.l2}</span></h2><p>${P.p}</p></div>`;
+}
+</script>
+</body></html>

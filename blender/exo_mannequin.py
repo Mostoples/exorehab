@@ -19,6 +19,8 @@ ap.add_argument("--flip-dorsal", action="store_true"); ap.add_argument("--blend"
 ap.add_argument("--transparent", action="store_true")
 ap.add_argument("--grip", type=float, default=0.0)
 ap.add_argument("--glb")
+ap.add_argument("--shot")
+ap.add_argument("--pole", type=float, default=-90)
 A = ap.parse_args(argv)
 DARK = A.theme == "dark"
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -249,8 +251,12 @@ pe = plate.evaluated_get(dg); pm = pe.to_mesh()
 def hook_world(xmm, ymm):
     xmm = -xmm if mirror else xmm
     target = Vector((xmm / 1000, ymm / 1000, 0.0038)); best = min(range(len(plate.data.vertices)), key=lambda i: (plate.data.vertices[i].co - target).length)
-    return plate.matrix_world @ pm.vertices[best].co
-HW = {k: hook_world(*v) for k, v in HOOKS.items()}
+    return best
+HOOKIDX = {k: hook_world(*v) for k, v in HOOKS.items()}
+HW = {k: plate.matrix_world @ pm.vertices[i].co for k, i in HOOKIDX.items()}
+def hooks_now():  # hook positions on the (possibly re-posed) thermoformed plate
+    e = plate.evaluated_get(bpy.context.evaluated_depsgraph_get()); m = e.to_mesh()
+    out = {k: plate.matrix_world @ m.vertices[i].co for k, i in HOOKIDX.items()}; e.to_mesh_clear(); return out
 pe.to_mesh_clear()
 
 def aim(o, p0, p1):
@@ -266,7 +272,7 @@ TAB = {f: Vector((0, 0.019, -0.036)) for f in (2, 3, 4, 5)}; TAB[1] = Vector((0,
 RODS = []
 for f, key in zip((2, 3, 4, 5, 1), ("index", "middle", "ring", "pinky", "thumb")):
     dist = SEGS[f][0]
-    RODS.append((rod(HW[key], dist.matrix_world @ TAB[f], 0.0011, "elastic", f"elastic_{key}"), HW[key], dist, TAB[f]))
+    RODS.append((rod(HW[key], dist.matrix_world @ TAB[f], 0.0011, "elastic", f"elastic_{key}"), HW[key], dist, TAB[f], key))
 
 # finger flexion: find the sign of local-X rotation that curls toward the palm
 FB = [f"finger{f}-{k}" for f in (1, 2, 3, 4, 5) for k in (1, 2, 3)]
@@ -278,6 +284,7 @@ FLEX = 1 if (tail("finger3-3") - t0).dot(dorsal) < 0 else -1
 b("finger3-2").rotation_quaternion = BASEQ["finger3-2"]; upd()
 print("FLEX sign", FLEX)
 CURL = {1: (0, 18, 32), 2: (48, 70, 40), 3: (52, 74, 42), 4: (55, 76, 44), 5: (58, 78, 46)}
+LIVE_HOOKS = False
 def flex(g):
     for f, (a1, a2, a3) in CURL.items():
         for k, a in zip((1, 2, 3), (a1, a2, a3)):
@@ -285,7 +292,8 @@ def flex(g):
             if n == "finger1-1": continue
             b(n).rotation_quaternion = BASEQ[n] @ Quaternion((1, 0, 0), FLEX * math.radians(a * g))
     upd()
-    for o, p0, dist, tab in RODS: aim(o, p0, dist.matrix_world @ tab)
+    hw = hooks_now() if LIVE_HOOKS else None
+    for o, p0, dist, tab, key in RODS: aim(o, hw[key] if hw else p0, dist.matrix_world @ tab)
 
 # straps: open tubes shrinkwrapped around wrist and palm + the printed clip
 def strap(c, axis, r, w, name):
@@ -376,7 +384,47 @@ def place_cam(t):
     CAM.location = TGT.location + off
     CAM.rotation_euler = (TGT.location - CAM.location).to_track_quat("-Z", "Y").to_euler()
 
+# ---------------- character shots (IK arm raise + camera moves) ----------------
+SHOT = getattr(A, "shot", None)
+if SHOT:
+    LIVE_HOOKS = True
+    def to_bone(o, bone):
+        mw = o.matrix_world.copy(); o.parent = rig; o.parent_type = "BONE"; o.parent_bone = f"{bone}.{SIDE}"; upd(); o.matrix_world = mw
+    to_bone(clip, "lowerarm02"); to_bone(grid, "wrist"); to_bone(plate, "wrist")
+    to_bone(bpy.data.objects["strap_wrist"], "lowerarm02"); to_bone(bpy.data.objects["strap_palm"], "wrist")
+    ikt = bpy.data.objects.new("ik_target", None); S.collection.objects.link(ikt)
+    pole = bpy.data.objects.new("ik_pole", None); S.collection.objects.link(pole)
+    REST_W = tail("lowerarm02").copy()
+    RAISED_W = Vector((0.30, -0.48, 1.20))       # wrist in front of the chest
+    ikt.location = RAISED_W; pole.location = Vector((0.55, 0.35, 0.80))  # keeps the elbow down and out
+    ik = b("lowerarm02").constraints.new("IK"); ik.target = ikt; ik.chain_count = 4
+    ik.pole_target = pole; ik.pole_angle = math.radians(A.pole); ik.influence = 0.0
+    def lift(k): ik.influence = k; upd()
+    def hand_now(): return (head("wrist") + sum((head(f"finger{f}-1") for f in (2, 3, 4, 5)), Vector()) / 4) / 2
+    def look(pos, tgt, lens, fstop):
+        cd.lens = lens; cd.dof.aperture_fstop = fstop; cd.dof.focus_object = None
+        CAM.location = pos; cd.dof.focus_distance = (tgt - pos).length
+        CAM.rotation_euler = (tgt - pos).to_track_quat("-Z", "Y").to_euler()
+    sm = lambda x: 0.0 if x <= 0 else 1.0 if x >= 1 else x * x * (3 - 2 * x)
+    def shot_frame(t):
+        if SHOT == "raise":   # wide full body → arm lifts → camera flies to the hand, fingers start working
+            lift(sm((t - 0.08) / 0.42)); flex(0.5 - 0.5 * math.cos(2 * math.pi * sm((t - 0.55) / 0.45) * 1.5))
+            hc = hand_now(); k = sm((t - 0.3) / 0.7)
+            p0, t0_ = Vector((1.9, -3.4, 1.15)), Vector((0.0, 0.0, 0.95))
+            p1, t1_ = hc + Vector((0.42, -0.55, 0.12)), hc
+            look(p0.lerp(p1, k), t0_.lerp(t1_, sm((t - 0.25) / 0.6)), 35 + 25 * k, 5.6 - 2.8 * k)
+        elif SHOT == "turntable":   # arm presented, full body orbit, fingers open/close twice
+            lift(1.0); flex(0.5 - 0.5 * math.cos(2 * math.pi * t * 2))
+            a = math.radians(-35) + 2 * math.pi * t * 0.5; r = 2.4
+            tg = Vector((0.1, 0.0, 1.0)); look(tg + Vector((r * math.sin(a), -r * math.cos(a), 0.25)), tg, 42, 6.0)
+        elif SHOT == "pose":   # still check
+            lift(1.0); flex(0.3); hc = hand_now()
+            if A.cam == "close": look(hc + Vector((0.42, -0.55, 0.12)), hc, 60, 4)
+            else: look(Vector((1.9, -3.4, 1.15)), Vector((0, 0, 0.95)), 35, 8)
+        for o, p, ph in DOTS: o.location = p + Vector((0, 0, 0.012 * math.sin(2 * math.pi * t * 2 + ph)))
+
 def animate(t):
+    if SHOT: return shot_frame(t)
     flex(0.5 - 0.5 * math.cos(2 * math.pi * t)) if A.anim else flex(A.grip)
     for o, p, ph in DOTS: o.location = p + Vector((0, 0, 0.012 * math.sin(2 * math.pi * t * 2 + ph)))
     for i, r in enumerate(RINGS): r.rotation_euler.z = math.radians(20 + 360 * t * (1 if i % 2 else -1))
@@ -398,7 +446,7 @@ if A.glb:
         S.frame_set(fr); flex(0.5 - 0.5 * math.cos(2 * math.pi * fr / N))
         for n in FB:
             if n != "finger1-1": b(n).keyframe_insert("rotation_quaternion", frame=fr)
-        for o, *_ in RODS:
+        for o, *_r in RODS:
             for path in ("location", "rotation_euler", "scale"): o.keyframe_insert(path, frame=fr)
     S.frame_set(0); flex(0.0)
     keep = {"Human", "Human.rig", "tee", "trousers", "shoes", "hand_heated_part", "strap_wrist", "strap_palm", "strap"}

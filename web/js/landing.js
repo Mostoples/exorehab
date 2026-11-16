@@ -35,7 +35,7 @@
   new IntersectionObserver((es, o) => es.forEach((e) => { if (e.isIntersecting) { ring.style.strokeDashoffset = 314 * (1 - 92 / 110); o.disconnect(); } }), { threshold: 0.4 }).observe(ring);
 
   const fv = $("#filmVid"), fm = fv.closest(".film-main");
-  $("#filmPlay").onclick = () => { fv.play(); fm.classList.add("on"); };
+  $("#filmPlay").onclick = () => { fv.controls = true; fv.play(); fm.classList.add("on"); };
   fv.onclick = () => (fv.paused ? fv.play() : fv.pause());
 
   addEventListener("scroll", () => $("#nav").classList.toggle("scrolled", scrollY > 20), { passive: true });

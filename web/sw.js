@@ -1,4 +1,4 @@
-const VERSION = "exolution-v5";
+const VERSION = "exolution-v6";
 const FILES = ["app.html","index.html","shared/tokens.css","shared/content.js","shared/logo-mark.svg","shared/fonts/PlusJakartaSans.ttf","css/app.css","css/landing.css","js/app.js","js/icons.js","js/exoarm.js","js/landing.js","js/explore.js","js/model.js","js/firebase-live.js","simulator.html"];
 self.addEventListener("install", e => e.waitUntil(caches.open(VERSION).then(c => c.addAll(FILES)).then(() => self.skipWaiting())));
 self.addEventListener("activate", e => e.waitUntil(caches.keys().then(k => Promise.all(k.filter(x => x !== VERSION).map(x => caches.delete(x))))));

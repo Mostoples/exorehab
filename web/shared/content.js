@@ -24,18 +24,27 @@ window.EXO = {
     { value: "~80%",  label: "of survivors live with motor weakness on one side", src: "Hemiparesis prevalence, stroke literature" },
     { value: "#1",    label: "cause of death in Indonesia is stroke", src: "Indonesian Ministry of Health / IHME" }
   ],
+  device: "hand",
   steps: [
-    { k: "Sense",   d: "sEMG, IMU and force sensors read muscle intent, joint angle and grip in real time." },
-    { k: "Think",   d: "An on-device AI model estimates patient effort and fatigue every 50 ms." },
-    { k: "Assist",  d: "The actuator adds only the torque the patient is missing — assist-as-needed." },
-    { k: "Monitor", d: "ESP32 streams sessions over IoT to therapists and family dashboards." }
+    { k: "Sense",   d: "Flex and IMU sensors on the finger rings and an sEMG pad on the forearm read finger angle and muscle intent." },
+    { k: "Think",   d: "An ESP32 on the dorsal plate estimates how much of each movement the patient can do alone." },
+    { k: "Assist",  d: "Elastic extension cords open the fingers; a micro-servo tensioner adds help only when it is missing." },
+    { k: "Monitor", d: "Every repetition streams live over IoT to the therapist and family dashboards." }
+  ],
+  parts: [
+    { k: "Thermoformed dorsal plate", d: "Printed flat in PETG, warmed and moulded to the patient's own hand and forearm." },
+    { k: "Articulated finger rings", d: "Print-in-place hinges follow each finger joint — no assembly, no screws." },
+    { k: "Thumb ring", d: "Two-segment hinged ring keeps the thumb in a functional position." },
+    { k: "Elastic extension cords", d: "Run from hooks on the plate to each fingertip ring to assist opening the hand." },
+    { k: "Strap clips", d: "Printed buckles hold soft straps around the palm and wrist." }
   ],
   features: [
-    { i: "ai",    t: "AI Adaptive Assistance", d: "Assistance level adjusts itself as the patient gets stronger, keeping therapy challenging but safe." },
-    { i: "iot",   t: "Real-Time IoT Monitoring", d: "Live joint angle, repetitions, muscle activity and heart rate streamed to the cloud." },
-    { i: "leaf",  t: "Sustainable by Design", d: "Recycled PETG frame, modular repairable parts and low-power electronics with USB-C charging." },
-    { i: "home",  t: "Home-Based Therapy", d: "Lightweight and affordable so rehabilitation continues between clinic visits." },
-    { i: "chart", t: "Progress Analytics", d: "Range of motion, effort and consistency trends turned into clear weekly reports." },
-    { i: "shield",t: "Safety First", d: "Mechanical joint limits, spasm detection and an instant soft-stop button." }
-  ]
+    { i: "ai",     t: "AI Adaptive Assistance", d: "Assistance adjusts itself as the patient gets stronger, keeping therapy challenging but safe." },
+    { i: "iot",    t: "Real-Time IoT Monitoring", d: "Finger angles, repetitions, grip and heart rate stream live to the cloud." },
+    { i: "leaf",   t: "Sustainable by Design", d: "Recycled PETG, print-in-place parts, repair one ring instead of replacing the device." },
+    { i: "home",   t: "Home-Based Therapy", d: "Light and affordable, so practice continues between clinic visits." },
+    { i: "chart",  t: "Progress Analytics", d: "Range of motion, effort and consistency turned into clear weekly reports." },
+    { i: "shield", t: "Safety First", d: "Joint limits, spasm detection and a soft-release button." }
+  ],
+  credit: { model: "3D-printed hand orthosis base design from Printables model #870468", url: "https://www.printables.com/model/870468-improving-fine-motor-skills-designing-a-3d-fdm-pri", author: "", license: "" }
 };

@@ -9,3 +9,9 @@ __pycache__/
 *.pyc
 .DS_Store
 Thumbs.db
+# Blender render caches (rebuild with blender/*.py)
+blender/render/
+blender/concepts/
+# Third-party source models (Printables #870468) — not redistributed until the licence is confirmed
+3dstl/
+blender/parts/

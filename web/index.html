@@ -3,126 +3,142 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ExoRehab — Smart Exoskeleton Rehabilitation</title>
-<meta name="description" content="ExoRehab is a sustainable smart exoskeleton for post-stroke hemiparesis rehabilitation with AI-driven adaptive assistance and real-time IoT monitoring.">
+<title>ExoRehab — Smart Hand Exoskeleton for Stroke Rehabilitation</title>
+<meta name="description" content="ExoRehab is a sustainable, 3D-printed smart hand exoskeleton for post-stroke hemiparesis rehabilitation with AI-driven adaptive assistance and real-time IoT monitoring.">
 <meta name="theme-color" content="#E9EFF7">
 <link rel="icon" href="shared/logo-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/tokens.css">
 <link rel="stylesheet" href="css/landing.css">
 </head>
 <body>
 <header class="nav" id="nav">
-  <a href="#top" class="brand"><img src="shared/logo-mark.svg" alt=""><span>Exo<b class="grad-text">Rehab</b></span></a>
-  <nav class="links"><a href="#problem">Problem</a><a href="#how">How it works</a><a href="#features">Features</a><a href="#app">App</a><a href="#team">Team</a></nav>
-  <a class="btn btn-primary sm" href="app.html">Launch App <span data-i="arrow"></span></a>
+  <a href="#top" class="brand"><img src="shared/logo-mark.svg" alt=""><span>Exo<b>Rehab</b></span></a>
+  <nav class="links"><a href="#device">Device</a><a href="#film">Film</a><a href="#features">Features</a><a href="#how">How it works</a><a href="#team">Team</a><a href="#faq">FAQ</a></nav>
+  <div class="nav-cta"><a class="pill-btn ghost" href="simulator.html">Simulator</a><a class="pill-btn solid" href="app.html">Launch App</a></div>
 </header>
 
 <section class="hero" id="top">
-  <div class="orb" style="width:620px;height:620px;right:-120px;top:-60px"></div>
-  <div class="hero-text reveal">
-    <span class="chip">Student research project · <span data-k="year"></span></span>
-    <h1>Rehabilitation that<br><span class="grad-text">adapts to you.</span></h1>
-    <p class="lead"><b>ExoRehab</b> (Exoskeleton Rehabilitation) is a lightweight smart exoskeleton that helps stroke survivors with one-sided weakness move again — giving only as much help as each patient needs, and sharing every session live with their care team.</p>
-    <div class="cta"><a class="btn btn-primary" href="app.html"><span data-i="play"></span>Try the live demo</a><a class="btn btn-ghost" href="#reel">Watch showreel</a></div>
-    <div class="pills"><span class="pill"><span data-i="ai"></span>AI adaptive</span><span class="pill"><span data-i="iot"></span>Real-time IoT</span><span class="pill"><span data-i="leaf"></span>Sustainable</span></div>
+  <video class="hero-video" src="assets/video/hero_loop.mp4" poster="assets/video/hero_poster.jpg" autoplay muted loop playsinline></video>
+  <div class="hero-fade"></div>
+  <div class="hero-inner">
+    <p class="eyebrow reveal">AI · IoT · Stroke rehabilitation</p>
+    <h1 class="reveal"><span class="l1">Move again,</span><span class="l2">one finger at a time.</span></h1>
+    <p class="lead reveal"><b>ExoRehab</b> is a 3D-printed smart hand exoskeleton for stroke survivors with one-sided weakness. It helps the fingers open, adapts its help to each patient, and streams every repetition live to the care team.</p>
+    <div class="cta reveal"><a class="pill-btn solid lg" href="app.html">Try the live demo <span data-i="arrow"></span></a><a class="pill-btn ghost lg" href="#film"><span data-i="play"></span>Watch the film</a></div>
   </div>
-  <div class="hero-vis reveal">
-    <div class="card hero stage"><div id="heroArm"></div></div>
-    <div class="float f1 card"><small>Elbow angle</small><b id="hA">72°</b></div>
-    <div class="float f2 card"><small>AI assist</small><b><span id="hS">38</span>%</b><div class="mbar"><i id="hSb"></i></div></div>
-    <div class="float f3 card"><span class="live"><i></i>Streaming to therapist</span></div>
+  <div class="stats-bar reveal">
+    <div><b data-count="5">5</b><span>3D-printed parts</span></div>
+    <div><b data-count="9">9</b><span>hinged finger joints</span></div>
+    <div><b data-count="10" data-suffix=" Hz">10 Hz</b><span>live IoT stream</span></div>
+    <div><b>&lt;1 s</b><span>cloud latency</span></div>
   </div>
+  <a class="scroll-cue" href="#device" aria-label="Scroll"><i></i></a>
 </section>
 
-<section class="paper reveal">
-  <div class="card paper-card">
-    <span class="label">Working paper title</span>
-    <p id="paperTitle"></p>
-    <small>Title and target patient criteria are still being refined through ongoing research.</small>
+<section class="marquee" aria-hidden="true"><div class="track" id="marquee"></div></section>
+
+<section class="section" id="device">
+  <div class="head center reveal"><p class="eyebrow">The device · rendered in Blender</p>
+    <h2><span class="l1">Five printed parts,</span><span class="l2">one wearable hand.</span></h2>
+    <p class="sub">Every part is 3D-printed. The dorsal plate is printed flat, then warmed and moulded to the patient's own hand.</p></div>
+  <div class="device-stage reveal">
+    <img src="assets/3d/parts_flatlay.webp" alt="ExoRehab 3D-printed parts: dorsal plate, four finger rings, thumb ring and strap clips" loading="lazy">
+    <div class="tag t1"><i>01</i><div><b>Dorsal plate</b><small>PETG · thermoformed</small></div></div>
+    <div class="tag t2"><i>02</i><div><b>Finger rings ×4</b><small>print-in-place hinges</small></div></div>
+    <div class="tag t3"><i>03</i><div><b>Thumb ring</b><small>2 hinged segments</small></div></div>
+    <div class="tag t4"><i>04</i><div><b>Strap clips</b><small>palm &amp; wrist</small></div></div>
   </div>
+  <div class="parts-list" id="parts"></div>
 </section>
 
-<section id="problem" class="sec">
-  <div class="sec-head reveal"><span class="chip">01 · The problem</span><h2>Stroke takes away movement.<br><span class="grad-text">Therapy is hard to reach.</span></h2>
-    <p>Hemiparesis — weakness on one side of the body — is the most common motor effect of stroke. Recovery depends on many repetitions of guided movement, but therapists, clinic time and travel are limited, especially after patients go home.</p></div>
-  <div class="stats" id="stats"></div>
-  <p class="src" id="statSrc"></p>
-</section>
-
-<section id="how" class="sec">
-  <div class="sec-head reveal"><span class="chip">02 · How it works</span><h2>Sense, think, assist,<br><span class="grad-text">monitor.</span></h2>
-    <p>A closed loop running dozens of times per second lets the exoskeleton follow the patient's intention instead of moving the arm for them.</p></div>
-  <div class="how">
-    <div class="card hero how-vis reveal"><div id="howArm"></div></div>
-    <ol class="steps" id="steps"></ol>
-  </div>
-</section>
-
-<section id="features" class="sec">
-  <div class="sec-head reveal"><span class="chip">03 · Features</span><h2>Smart where it matters,<br><span class="grad-text">simple everywhere else.</span></h2></div>
-  <div class="feat" id="feat"></div>
-</section>
-
-<section class="sec">
-  <div class="sec-head reveal"><span class="chip">04 · System architecture</span><h2>From muscle signal<br><span class="grad-text">to care team.</span></h2></div>
-  <div class="arch reveal">
-    <div class="col"><div class="card node"><span data-i="pulse"></span><b>Sensors</b><small>sEMG · IMU · force · heart rate</small></div></div>
-    <div class="ar"><span data-i="arrow"></span></div>
-    <div class="col"><div class="card hero node main"><span data-i="cpu"></span><b>ESP32-S3 edge AI</b><small>Effort estimation · assist-as-needed control · safety limits</small></div></div>
-    <div class="ar"><span data-i="arrow"></span></div>
-    <div class="col two">
-      <div class="card node"><span data-i="bolt"></span><b>Elbow actuator</b><small>Servo / series-elastic drive</small></div>
-      <div class="card node"><span data-i="cloud"></span><b>IoT cloud</b><small>MQTT over TLS · real-time database</small></div>
-    </div>
-    <div class="ar"><span data-i="arrow"></span></div>
-    <div class="col two">
-      <div class="card node"><span data-i="user"></span><b>Therapist</b><small>Live dashboard · limits</small></div>
-      <div class="card node"><span data-i="heart"></span><b>Patient & family</b><small>Progress · alerts</small></div>
-    </div>
+<section class="section film" id="film">
+  <div class="head center reveal"><p class="eyebrow">Film · made with Blender</p>
+    <h2><span class="l1">See ExoRehab</span><span class="l2">in motion.</span></h2>
+    <p class="sub">The real printed parts, assembled on a mannequin hand. The rings bend with every finger joint while the cords assist opening.</p></div>
+  <div class="film-grid">
+    <div class="film-main reveal"><video src="assets/video/detail_loop.mp4" poster="assets/video/detail_poster.jpg" muted loop playsinline preload="none" id="filmVid"></video>
+      <button class="play" id="filmPlay" aria-label="Play film"><span data-i="play"></span></button>
+      <div class="film-meta"><span class="badge">Loop · 5 s</span><span>Finger flexion &amp; extension with elastic assist</span></div></div>
+    <aside class="film-side reveal">
+      <div class="score"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" class="trk"/><circle cx="60" cy="60" r="50" class="val" id="romRing"/></svg><div><b id="romVal">92°</b><small>max finger flexion</small></div></div>
+      <ul class="mini"><li><span data-i="pulse"></span>Live digital twin</li><li><span data-i="ai"></span>Adaptive assist level</li><li><span data-i="iot"></span>Firebase real-time sync</li></ul>
+      <a class="pill-btn solid" href="simulator.html">Open device simulator</a>
+    </aside>
   </div>
 </section>
 
-<section class="sec eco">
-  <div class="sec-head reveal"><span class="chip">05 · Sustainability</span><h2>Built to last,<br><span class="grad-text">built to be fixed.</span></h2></div>
-  <div class="eco-grid">
-    <div class="card eco-c reveal"><span class="eco-ic"><span data-i="recycle"></span></span><b>Recycled materials</b><p>3D-printed frame from recycled PETG filament; soft cuffs from washable, replaceable textile.</p></div>
-    <div class="card eco-c reveal"><span class="eco-ic"><span data-i="wrench"></span></span><b>Modular & repairable</b><p>Cuffs, straps, battery and actuator snap apart — replace one part instead of the whole device.</p></div>
-    <div class="card eco-c reveal"><span class="eco-ic"><span data-i="bolt"></span></span><b>Low-power by design</b><p>Edge AI runs on a microcontroller, deep-sleeps between sessions and charges over USB-C.</p></div>
-    <div class="card eco-c reveal"><span class="eco-ic"><span data-i="home"></span></span><b>Fewer trips</b><p>Remote monitoring lets therapy continue at home, reducing travel for patients and families.</p></div>
+<section class="section split" id="problem">
+  <div class="reveal"><span class="chip-dot">01 · Problem</span>
+    <h2><span class="l1">Stroke takes the hand.</span><span class="l2">Recovery takes repetition.</span></h2>
+    <div class="big-stats" id="stats"></div><p class="src" id="statSrc"></p></div>
+  <div class="cards">
+    <div class="pcard reveal"><b>The hand closes, but won't open.</b><p>After stroke, flexor muscles often overpower extensors. Opening the hand is the hardest part of recovery.</p></div>
+    <div class="pcard reveal"><b>Hundreds of repetitions a day.</b><p>Re-learning movement needs intensive practice, far more than a weekly clinic session can offer.</p></div>
+    <div class="pcard reveal"><b>Robots stay in hospitals.</b><p>Existing rehabilitation robots are large and expensive. Most patients go home without one.</p></div>
   </div>
 </section>
 
-<section id="app" class="sec">
-  <div class="app-wrap">
-    <div class="sec-head left reveal"><span class="chip">06 · The app</span><h2>Every session,<br><span class="grad-text">live and measurable.</span></h2>
-      <p>The ExoRehab web app shows a live digital twin of the arm, the AI's assistance level, muscle signal, heart rate and weekly progress — for patients, families and therapists.</p>
-      <ul class="ticks"><li><span data-i="check"></span>Live digital twin & sEMG waveform</li><li><span data-i="check"></span>AI assistance vs. patient effort</li><li><span data-i="check"></span>Progress analytics & session history</li><li><span data-i="check"></span>IoT alerts shared with the care team</li><li><span data-i="check"></span>Live sync via Firebase Realtime Database</li></ul>
-      <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-primary" href="app.html">Open the app <span data-i="arrow"></span></a><a class="btn btn-ghost" href="simulator.html">Device simulator</a></div>
-    </div>
-    <div class="phone-mock reveal"><div class="notch"></div><iframe src="app.html" title="ExoRehab app demo"></iframe></div>
-  </div>
+<section class="section" id="features">
+  <div class="head reveal"><span class="chip-dot">02 · Solution</span>
+    <h2><span class="l1">One orthosis,</span><span class="l2">six smart layers.</span></h2>
+    <p class="sub">A low-cost printed orthosis made smart with sensors, edge AI and IoT, and built to be repaired, not replaced.</p></div>
+  <div class="bento" id="bento"></div>
 </section>
 
-<section id="reel" class="sec">
-  <div class="sec-head reveal"><span class="chip">07 · Showreel</span><h2>See ExoRehab<br><span class="grad-text">in motion.</span></h2></div>
-  <div class="card hero reel reveal"><video src="assets/exorehab-showreel.mp4" poster="assets/reel-poster.jpg" controls playsinline preload="metadata"></video></div>
+<section class="section split how" id="how">
+  <div class="reveal"><span class="chip-dot">03 · How it works</span>
+    <h2><span class="l1">From intention</span><span class="l2">to movement, in 50 ms.</span></h2>
+    <div class="orb-stage"><img src="assets/3d/hand_detail.webp" alt="ExoRehab worn on the hand, dorsal view" loading="lazy"></div></div>
+  <ol class="steps" id="steps"></ol>
 </section>
 
-<section id="team" class="sec">
-  <div class="sec-head reveal"><span class="chip">08 · The team</span><h2>Students from<br><span class="grad-text">Surakarta, Indonesia.</span></h2>
-    <p id="schools"></p></div>
+<section class="section split app" id="app">
+  <div class="reveal"><span class="chip-dot">04 · The app</span>
+    <h2><span class="l1">Every session,</span><span class="l2">live and measurable.</span></h2>
+    <p class="sub">The ExoRehab web app shows a live digital twin, the AI's assistance level, muscle signal, heart rate and weekly progress for patients, families and therapists.</p>
+    <ul class="ticks"><li><span data-i="check"></span>Live digital twin &amp; sEMG waveform</li><li><span data-i="check"></span>AI assistance vs. patient effort</li><li><span data-i="check"></span>Progress analytics &amp; session history</li><li><span data-i="check"></span>Real-time sync via Firebase</li></ul>
+    <div class="cta"><a class="pill-btn solid" href="app.html">Open the app</a><a class="pill-btn ghost" href="simulator.html">Device simulator</a></div></div>
+  <div class="phone-mock reveal"><div class="notch"></div><iframe src="app.html" title="ExoRehab app demo" loading="lazy"></iframe></div>
+</section>
+
+<section class="section" id="team">
+  <div class="head center reveal"><span class="chip-dot">05 · Team</span>
+    <h2><span class="l1">Built by students</span><span class="l2">in Surakarta.</span></h2>
+    <p class="sub" id="schools"></p></div>
   <div class="team" id="teamGrid"></div>
 </section>
 
+<section class="section split faq" id="faq">
+  <div class="reveal"><span class="chip-dot">06 · FAQ</span>
+    <h2><span class="l1">Questions</span><span class="l2">we hear often.</span></h2></div>
+  <div class="acc" id="acc">
+    <details class="reveal"><summary>Who is ExoRehab for?</summary><p>Stroke survivors with weakness on one side of the body (hemiparesis) who are practising hand opening and grasping, under the guidance of a therapist. Patient criteria are still being refined in our research.</p></details>
+    <details class="reveal"><summary>Why is the plate "heat-formed"?</summary><p>It prints flat, which is fast and needs no supports. Warmed above PETG's glass temperature, it becomes flexible and is moulded directly onto the patient's hand, giving a personal fit at very low cost.</p></details>
+    <details class="reveal"><summary>What does the AI actually do?</summary><p>It estimates how much of each finger movement the patient can do alone, from finger angle and muscle signals, and sets the assist level so help fades as strength returns.</p></details>
+    <details class="reveal"><summary>Is the data real?</summary><p>The web app runs on simulated data unless a device or the online simulator is streaming. Live data travels through Firebase Realtime Database.</p></details>
+    <details class="reveal"><summary>Is this a medical device?</summary><p>No. ExoRehab is a student research prototype and concept. It is not certified for clinical use.</p></details>
+  </div>
+</section>
+
+<section class="section">
+  <div class="cta-card reveal">
+    <div><h2><span class="l1">Ready to open</span><span class="l2">the hand again?</span></h2>
+      <p class="sub">Try the live demo app, or stream data from the virtual device in your browser.</p>
+      <div class="cta"><a class="pill-btn solid lg" href="app.html">Launch the app</a><a class="pill-btn ghost lg" href="simulator.html">Open the simulator</a></div></div>
+    <img src="assets/3d/hand_grip.webp" alt="ExoRehab on a mannequin hand, mid-grip" loading="lazy">
+  </div>
+</section>
+
 <footer class="foot">
-  <div class="brand"><img src="shared/logo-mark.svg" alt=""><span>Exo<b class="grad-text">Rehab</b></span></div>
-  <p>Exoskeleton Rehabilitation · <span id="fy"></span> · SMA Negeri 1 Surakarta & SMA Negeri 3 Surakarta</p>
-  <p class="disc">ExoRehab is a student research prototype and concept. It is not a certified medical device; data shown in the demo app is simulated.</p>
+  <a href="#top" class="brand"><img src="shared/logo-mark.svg" alt=""><span>Exo<b>Rehab</b></span></a>
+  <p>Exoskeleton Rehabilitation · <span id="fy"></span> · SMA Negeri 1 Surakarta &amp; SMA Negeri 3 Surakarta<br><span id="credit"></span></p>
+  <p class="disc">Student research prototype, not a certified medical device. Demo data is simulated. 3D renders made with Blender and MPFB (CC0).</p>
 </footer>
 
 <script src="shared/content.js"></script>
 <script src="js/icons.js"></script>
-<script src="js/exoarm.js"></script>
 <script src="js/landing.js"></script>
 </body>
 </html>

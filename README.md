@@ -1,6 +1,6 @@
 # ExoRehab — Exoskeleton Rehabilitation
 
-**Live demo:** [exorehab.web.app](https://exorehab.web.app) · [Web app](https://exorehab.web.app/app) · [Device simulator](https://exorehab.web.app/simulator) · [Showreel](output/ExoRehab_Showreel_1080p.mp4)
+**Live demo:** [exolution-id.web.app](https://exolution-id.web.app) · [Web app](https://exolution-id.web.app/app) · [Device simulator](https://exolution-id.web.app/simulator) · [Showreel](output/ExoRehab_Showreel_1080p.mp4)
 
 <p align="center"><img src="output/logo/exorehab-lockup.png" alt="ExoRehab logo" width="420"></p>
 
@@ -31,7 +31,7 @@ Files starting with `_` are temporary previews and can be deleted.
 - To run: open `web/index.html` directly, or serve the folder (`python -m http.server` inside `web/`) and deploy it to any static host (Firebase Hosting, Netlify, GitHub Pages).
 
 ## Live site & Firebase
-- **https://exorehab.web.app**: landing page · `/app`: web app · `/simulator`: virtual device.
+- **https://exolution-id.web.app**: landing page · `/app`: web app · `/simulator`: virtual device. The old `exorehab.web.app` redirects there (301).
 - Realtime Database `exorehab-default-rtdb`, one node per device (`?device=exo-02` selects another device; IDs must match `exo-NN`):
   - `devices/{id}/live`: latest packet from the ESP32 or the simulator (10 Hz): `angle, assist, effort, hr, reps, battery, t, ts, mode, source, emg[]`
   - `devices/{id}/config`: settings from the app (`mode`, `maxFlexion`, `aiAdaptive`, `spasmStop`, `shareTherapist`)
@@ -39,7 +39,17 @@ Files starting with `_` are temporary previews and can be deleted.
 - The app shows **live** data while packets arrive (within the last 4 s) and falls back to the demo simulation otherwise. Opened as a local `file://`, it always runs in demo mode.
 - Rules (`database.rules.json`) allow writes without login, but only to `devices/exo-NN` and only with validated fields. Everything else is denied. Before using real patient data, add Firebase Auth and tighten the rules.
 - ESP32 starter firmware: `firmware/exorehab_esp32/exorehab_esp32.ino`. It sends the same packet format as the simulator.
-- Deploy: `firebase deploy --only hosting,database --project exorehab`. Bump `VERSION` in `web/sw.js` when you change cached files.
+- Deploy: `firebase deploy --only hosting,database --project exorehab` (deploys both Hosting sites: `exolution-id` and the `exorehab` redirect). Bump `VERSION` in `web/sw.js` when you change cached files.
+
+## 3D assets (Blender 5.2 + MPFB)
+The device is a **3D-printed hand orthosis**. The source parts are in `3dstl/*.3mf` (from Printables model #870468; add the author and licence to `credit` in `web/shared/content.js`) and are converted to `blender/parts/*.stl`.
+- `blender/exo_mannequin.py`: builds an MPFB (CC0) mannequin with a short-sleeve tee and trousers, then assembles the parts on the left hand:
+  - finger and thumb rings are cut at each joint and parented to the finger bones, so they flex with the fingers;
+  - the flat dorsal plate is "thermoformed" onto the hand with Surface Deform + Shrinkwrap;
+  - the elastic cords and straps are added.
+  - Usage: `blender -b -P blender/exo_mannequin.py -- --theme light --cam hero|top|wide --still out.png` or `--anim dir/ --frames 120`. Needs the MPFB extension, so do not use `--factory-startup`.
+- `blender/exo_assets.py`: renders the flat-lay of the printed parts and the six 3D feature icons.
+- `python tools/compose_loops.py`: composites the transparent frames over the brand background → `web/assets/video/*_loop.mp4` + posters + WebP stills.
 
 ## Change the title, names or copy
 Everything shared lives in **`web/shared/content.js`**. Changing `condition`, for example `"Partial Stroke/Hemiparesis"`, updates the landing page, poster, brochure and showreel.

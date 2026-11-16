@@ -48,6 +48,7 @@ The device is a **3D-printed hand orthosis**. The source parts are in `3dstl/*.3
   - the flat dorsal plate is "thermoformed" onto the hand with Surface Deform + Shrinkwrap;
   - the elastic cords and straps are added.
   - Usage: `blender -b -P blender/exo_mannequin.py -- --theme light --cam hero|top|wide --still out.png` or `--anim dir/ --frames 120`. Needs the MPFB extension, so do not use `--factory-startup`.
+- `--glb web/assets/3d/exolution.glb`: exports the interactive web model (Draco + the 'grip' finger animation, hotspot positions in `exolution.json`). Then run `python tools/merge_glb_anims.py web/assets/3d/exolution.glb grip` so model-viewer plays all channels as one clip. The landing page's **Explore in 3D** section (`web/js/explore.js`) flies the camera from fingertip to full body as the visitor scrolls; dragging or the presets take over.
 - `blender/exo_assets.py`: renders the flat-lay of the printed parts and the six 3D feature icons.
 - `python tools/compose_loops.py`: composites the transparent frames over the brand background → `web/assets/video/*_loop.mp4` + posters + WebP stills.
 

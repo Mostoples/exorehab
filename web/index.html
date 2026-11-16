@@ -15,7 +15,7 @@
 <body>
 <header class="nav" id="nav">
   <a href="#top" class="brand"><img src="shared/logo-mark.svg" alt=""><span>Exo<b>lution</b></span></a>
-  <nav class="links"><a href="#device">Device</a><a href="#film">Film</a><a href="#features">Features</a><a href="#how">How it works</a><a href="#team">Team</a><a href="#faq">FAQ</a></nav>
+  <nav class="links"><a href="#explore">3D</a><a href="#device">Device</a><a href="#film">Film</a><a href="#features">Features</a><a href="#how">How it works</a><a href="#team">Team</a><a href="#faq">FAQ</a></nav>
   <div class="nav-cta"><a class="pill-btn ghost" href="simulator.html">Simulator</a><a class="pill-btn solid" href="app.html">Launch App</a></div>
 </header>
 
@@ -38,6 +38,29 @@
 </section>
 
 <section class="marquee" aria-hidden="true"><div class="track" id="marquee"></div></section>
+
+<section class="explore" id="explore">
+  <div class="ex-sticky">
+    <model-viewer id="mv" src="assets/3d/exolution.glb" poster="assets/video/hero_poster.jpg" alt="Interactive 3D model of the Exolution hand exoskeleton worn by a mannequin"
+      camera-controls touch-action="pan-y" interaction-prompt="none" autoplay animation-name="grip" shadow-intensity="0.9" shadow-softness="1"
+      environment-image="neutral" exposure="1.05" tone-mapping="neutral" field-of-view="28deg" min-field-of-view="10deg" max-field-of-view="40deg"
+      camera-target="0.51m 1.03m 0.24m" camera-orbit="40deg 70deg 0.32m" min-camera-orbit="auto 5deg 0.18m" max-camera-orbit="auto 175deg 6m"
+      interpolation-decay="90" disable-pan>
+      <div class="mv-load" slot="progress-bar"><i id="mvBar"></i></div>
+    </model-viewer>
+    <div class="ex-copy">
+      <p class="eyebrow">Explore in 3D</p>
+      <h2><span class="l1">From fingertip</span><span class="l2">to full body.</span></h2>
+      <div class="ex-steps" id="exSteps"></div>
+    </div>
+    <div class="ex-ui">
+      <div class="ex-presets" id="exPresets"></div>
+      <button class="ex-play" id="exPlay" aria-label="Pause grip animation"><span data-i="pause"></span></button>
+    </div>
+    <div class="ex-hint" id="exHint"><span>Scroll to zoom out</span><i></i><span>Drag to rotate</span></div>
+    <div class="ex-rail"><i id="exRail"></i></div>
+  </div>
+</section>
 
 <section class="section" id="device">
   <div class="head center reveal"><p class="eyebrow">The device · rendered in Blender</p>
@@ -140,5 +163,7 @@
 <script src="shared/content.js"></script>
 <script src="js/icons.js"></script>
 <script src="js/landing.js"></script>
+<script type="module" src="https://unpkg.com/@google/model-viewer@4.0.0/dist/model-viewer.min.js"></script>
+<script src="js/explore.js"></script>
 </body>
 </html>

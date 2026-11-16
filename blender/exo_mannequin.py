@@ -18,6 +18,7 @@ ap.add_argument("--res", default="1920x1080"); ap.add_argument("--samples", type
 ap.add_argument("--flip-dorsal", action="store_true"); ap.add_argument("--blend")
 ap.add_argument("--transparent", action="store_true")
 ap.add_argument("--grip", type=float, default=0.0)
+ap.add_argument("--glb")
 A = ap.parse_args(argv)
 DARK = A.theme == "dark"
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -390,6 +391,33 @@ S.render.film_transparent = A.transparent or not DARK
 w, h = (int(x) for x in A.res.split("x")); S.render.resolution_x, S.render.resolution_y = w, h
 S.render.use_persistent_data = False
 
+if A.glb:
+    # interactive web model: mannequin + orthosis, finger open/close baked as a 72-frame loop
+    N = 72; S.frame_start, S.frame_end = 0, N; S.render.fps = 24
+    for fr in range(N + 1):
+        S.frame_set(fr); flex(0.5 - 0.5 * math.cos(2 * math.pi * fr / N))
+        for n in FB:
+            if n != "finger1-1": b(n).keyframe_insert("rotation_quaternion", frame=fr)
+        for o, *_ in RODS:
+            for path in ("location", "rotation_euler", "scale"): o.keyframe_insert(path, frame=fr)
+    S.frame_set(0); flex(0.0)
+    keep = {"Human", "Human.rig", "tee", "trousers", "shoes", "hand_heated_part", "strap_wrist", "strap_palm", "strap"}
+    bpy.ops.object.select_all(action="DESELECT")
+    for o in S.objects:
+        if o.name in keep or o.name.startswith(("ring", "elastic_")):
+            o.hide_set(False); o.select_set(True)
+    rig.data.pose_position = "POSE"
+    bpy.ops.export_scene.gltf(filepath=A.glb, export_format="GLB", use_selection=True, export_apply=True,
+                              export_animations=True, export_animation_mode="SCENE", export_force_sampling=True, export_frame_range=True,
+                              export_draco_mesh_compression_enable=True, export_draco_mesh_compression_level=7,
+                              export_yup=True)
+    g = lambda v: [round(v.x, 4), round(v.z, 4), round(-v.y, 4)]  # Blender Z-up → glTF Y-up
+    clipw = bpy.data.objects["strap"].matrix_world.translation
+    spots = {"hand": g(HAND_C), "plate": g(plate.matrix_world @ Vector((0, 0, 0.004))), "index": g(SEGS[2][1].matrix_world @ Vector((0, 0.018, 0))),
+             "thumb": g(SEGS[1][0].matrix_world @ Vector((0, 0.016, 0))), "cord": g((HW["middle"] + SEGS[3][0].matrix_world @ TAB[3]) / 2),
+             "clip": g(clipw), "wrist": g(wrist), "chest": g(Vector((0, 0, 1.3))), "body": g(Vector((0, 0, 0.9))), "dorsal": g(dorsal)}
+    open(os.path.splitext(A.glb)[0] + ".json", "w").write(json.dumps(spots, indent=1))
+    print("GLB_DONE", os.path.getsize(A.glb) // 1024, "KB")
 if A.blend: bpy.ops.wm.save_as_mainfile(filepath=A.blend)
 if A.still:
     animate(0.0); S.render.filepath = A.still; bpy.ops.render.render(write_still=True)

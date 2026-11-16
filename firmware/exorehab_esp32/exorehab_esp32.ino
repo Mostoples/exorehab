@@ -1,5 +1,5 @@
 /*
-  ExoRehab ESP32 firmware (starter) — streams therapy data to Firebase Realtime Database
+  Exolution ESP32 firmware (starter) — streams therapy data to Firebase Realtime Database
   using the same format as web/simulator.html, so the web app shows it live.
 
   Board: ESP32 / ESP32-S3 (Arduino core 2.x or 3.x). No extra libraries required.

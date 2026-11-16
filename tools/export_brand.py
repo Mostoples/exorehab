@@ -17,11 +17,11 @@ with sync_playwright() as p:
         pg2.evaluate("document.getElementById('mark').style.display='none'")
         pg2.screenshot(path=str(ROOT / "output" / "_preview_brand.png"), full_page=True)
     else:
-        pg.locator("#mark").screenshot(path=str(OUT / "exorehab-mark-1024.png"), omit_background=True)
+        pg.locator("#mark").screenshot(path=str(OUT / "exolution-mark-1024.png"), omit_background=True)
         pg.evaluate("document.getElementById('mark').style.display='none'")
         for i in ["lockup", "lockup-white", "stacked"]:
-            pg.locator("#" + i).screenshot(path=str(OUT / f"exorehab-{i}.png"), omit_background=(i != "lockup-white"))
+            pg.locator("#" + i).screenshot(path=str(OUT / f"exolution-{i}.png"), omit_background=(i != "lockup-white"))
         for f in ["logo-mark.svg"]:
-            (OUT / "exorehab-mark.svg").write_bytes((ROOT / "web" / "shared" / f).read_bytes())
+            (OUT / "exolution-mark.svg").write_bytes((ROOT / "web" / "shared" / f).read_bytes())
     b.close()
 print("ok")

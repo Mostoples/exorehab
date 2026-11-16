@@ -1,4 +1,4 @@
-// ExoRehab web app — live data from Firebase RTDB (ESP32 / simulator), demo simulation as fallback.
+// Exolution web app — live data from Firebase RTDB (ESP32 / simulator), demo simulation as fallback.
 // ?rec  → deterministic mode: time is driven only by APP.setTime(t) (used by the showreel recorder).
 (function () {
   const $ = (s, r = document) => r.querySelector(s);

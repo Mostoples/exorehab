@@ -1,4 +1,4 @@
-// Simulated ExoRehab therapy signal, shared by the demo app and the virtual device simulator.
+// Simulated Exolution therapy signal, shared by the demo app and the virtual device simulator.
 (function () {
   const PERIOD = 4;
   const MODES = { passive: 0.18, aan: null, active: 0.92 };

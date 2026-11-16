@@ -1,4 +1,4 @@
-/* ExoRehab design tokens — shared by web app, landing page, poster, brochure and showreel */
+/* Exolution design tokens — shared by web app, landing page, poster, brochure and showreel */
 @font-face{font-family:"Plus Jakarta Sans";src:url("fonts/PlusJakartaSans.ttf") format("truetype");font-weight:200 800;font-display:swap}
 :root{
   --bg:#E9EFF7; --bg-2:#F3F6FB; --sd:#C6D2E3; --sl:#FFFFFF;

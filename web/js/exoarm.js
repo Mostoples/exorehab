@@ -1,4 +1,4 @@
-// Parametric ExoRehab upper-limb exoskeleton illustration (side view).
+// Parametric Exolution upper-limb exoskeleton illustration (side view).
 // exoArmSVG(id) returns SVG markup; setElbow(root, deg, assist) poses it (0° = extended, 130° = full flexion).
 (function () {
   function exoArmSVG(id, opts) {
@@ -12,7 +12,7 @@
         <g><line x1="150" y1="330" x2="40" y2="380" stroke="#2F7BFF" stroke-width="2"/><circle cx="150" cy="330" r="5" fill="#2F7BFF"/><text x="8" y="402">IMU angle sensor</text></g>
       </g>` : "";
     return `
-<svg class="exoarm" viewBox="0 0 540 640" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ExoRehab upper-limb exoskeleton">
+<svg class="exoarm" viewBox="0 0 540 640" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Exolution upper-limb exoskeleton">
   <defs>
     <linearGradient id="${p}-skin" x1="0" x2="1"><stop offset="0" stop-color="#CBD6E6"/><stop offset=".55" stop-color="#E3EAF4"/><stop offset="1" stop-color="#C9D4E4"/></linearGradient>
     <linearGradient id="${p}-shell" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E4ECF8"/></linearGradient>

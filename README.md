@@ -1,26 +1,26 @@
-# ExoRehab — Exoskeleton Rehabilitation
+# Exolution — Smart Hand Exoskeleton
 
-**Live demo:** [exolution-id.web.app](https://exolution-id.web.app) · [Web app](https://exolution-id.web.app/app) · [Device simulator](https://exolution-id.web.app/simulator) · [Showreel](output/ExoRehab_Showreel_1080p.mp4)
+**Live demo:** [exolution-id.web.app](https://exolution-id.web.app) · [Web app](https://exolution-id.web.app/app) · [Device simulator](https://exolution-id.web.app/simulator) · [Showreel](output/Exolution_Showreel_1080p.mp4)
 
-<p align="center"><img src="output/logo/exorehab-lockup.png" alt="ExoRehab logo" width="420"></p>
+<p align="center"><img src="output/logo/exolution-lockup.png" alt="Exolution logo" width="420"></p>
 
 <p align="center">
-  <img src="output/ExoRehab_Brochure_outside.png" alt="ExoRehab brochure (outside)" width="49%">
-  <img src="output/ExoRehab_Brochure_inside.png" alt="ExoRehab brochure (inside)" width="49%">
+  <img src="output/Exolution_Brochure_outside.png" alt="Exolution brochure (outside)" width="49%">
+  <img src="output/Exolution_Brochure_inside.png" alt="Exolution brochure (inside)" width="49%">
 </p>
 
 Brand, web app, landing page, A0 poster, trifold brochure and showreel for the student research project
-**"ExoRehab: A Sustainable Smart Exoskeleton for Post-Stroke Hemiparesis Rehabilitation with AI-Driven Adaptive Assistance and Real-Time IoT Monitoring"**.
+**"Exolution: A Sustainable Smart Exoskeleton for Post-Stroke Hemiparesis Rehabilitation with AI-Driven Adaptive Assistance and Real-Time IoT Monitoring"**.
 
 Team: Adara Febrita Giant. R, Cheysa Shaquilla Rasheesa Salsabila, Anisa Widad, Fabio Setyo Nugroho (SMA Negeri 1 Surakarta) and Valentino Kristian Diego (SMA Negeri 3 Surakarta).
 
 ## Final files (`output/`)
 | File | What |
 |---|---|
-| `ExoRehab_Poster_A0.pdf` / `.png` | A0 poster (841 × 1189 mm, vector PDF) |
-| `ExoRehab_Brochure_Trifold_A4.pdf` | Trifold, A4 landscape, page 1 = outside, page 2 = inside |
-| `ExoRehab_Brochure_outside.png` / `_inside.png` | Brochure previews (3× resolution) |
-| `ExoRehab_Showreel_1080p.mp4` | 63 s showreel, 1920×1080, 30 fps, with royalty-free synth music |
+| `Exolution_Poster_A0.pdf` / `.png` | A0 poster (841 × 1189 mm, vector PDF) |
+| `Exolution_Brochure_Trifold_A4.pdf` | Trifold, A4 landscape, page 1 = outside, page 2 = inside |
+| `Exolution_Brochure_outside.png` / `_inside.png` | Brochure previews (3× resolution) |
+| `Exolution_Showreel_1080p.mp4` | 63 s showreel, 1920×1080, 30 fps, with royalty-free synth music |
 | `logo/` | Logo mark (SVG + 1024 px PNG), horizontal lockup, white lockup, stacked |
 
 Files starting with `_` are temporary previews and can be deleted.
@@ -69,4 +69,4 @@ Requirements: Python with `playwright`, `numpy`, `Pillow`, plus FFmpeg.
 - **App data is simulated** (patient "P-017", reps, ROM, charts). Replace it with real prototype data once testing starts.
 - **Statistics** are rounded public figures: 12.2M strokes/year (World Stroke Organization, 2022); ~80% of survivors with one-sided motor weakness (commonly cited hemiparesis prevalence); stroke as the leading cause of death in Indonesia (Ministry of Health / IHME). Verify them and cite the exact sources in the paper.
 - **Team detail strings** (class / number / ID) are shown exactly as provided.
-- The poster/brochure state that ExoRehab is a research prototype, not a certified medical device.
+- The poster/brochure state that Exolution is a research prototype, not a certified medical device.

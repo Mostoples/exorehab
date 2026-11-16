@@ -1,4 +1,4 @@
-"""ExoRehab web assets (light studio, transparent PNG with soft shadows):
+"""Exolution web assets (light studio, transparent PNG with soft shadows):
   parts  — flat-lay of the 3D-printed orthosis parts (blender/parts/*.stl)
   icons  — six brand-style 3D feature icons
 blender -b --factory-startup -P blender/exo_assets.py -- parts out.png

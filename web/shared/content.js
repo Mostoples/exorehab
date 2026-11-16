@@ -1,8 +1,8 @@
-// ExoRehab — single source of truth for names, title and copy.
+// Exolution — single source of truth for names, title and copy.
 // Edit here, then re-run tools/build_all.py to refresh poster, brochure, logo PNGs and showreel.
 window.EXO = {
-  product: "ExoRehab",
-  expansion: "Exoskeleton Rehabilitation",
+  product: "Exolution",
+  expansion: "Smart Hand Exoskeleton",
   tagline: "Move again, smarter.",
   // Working paper title. Target condition is still under research — change only this line.
   titleLead: "A Sustainable Smart Exoskeleton for",

@@ -19,16 +19,16 @@ with sync_playwright() as p:
         if preview:
             pg.screenshot(path=str(OUT / "_poster_full.png"))
         else:
-            pg.screenshot(path=str(OUT / "ExoRehab_Poster_A0.png"))
-            pg.pdf(path=str(OUT / "ExoRehab_Poster_A0.pdf"), width="841mm", height="1189mm", print_background=True)
+            pg.screenshot(path=str(OUT / "Exolution_Poster_A0.png"))
+            pg.pdf(path=str(OUT / "Exolution_Poster_A0.pdf"), width="841mm", height="1189mm", print_background=True)
     if "brochure" in which:
         pg = b.new_page(viewport={"width": 1123, "height": 794}, device_scale_factor=3)
         errs = []; pg.on("pageerror", lambda e: errs.append(str(e)))
         pg.goto((ROOT / "print" / "brochure-trifold.html").as_uri()); pg.wait_for_timeout(2500)
         print("brochure errors:", errs)
         for i, side in enumerate(["outside", "inside"]):
-            pg.locator(".sheet").nth(i).screenshot(path=str(OUT / f"{'_' if preview else ''}ExoRehab_Brochure_{side}.png"))
+            pg.locator(".sheet").nth(i).screenshot(path=str(OUT / f"{'_' if preview else ''}Exolution_Brochure_{side}.png"))
         if not preview:
-            pg.pdf(path=str(OUT / "ExoRehab_Brochure_Trifold_A4.pdf"), width="297mm", height="210mm", print_background=True)
+            pg.pdf(path=str(OUT / "Exolution_Brochure_Trifold_A4.pdf"), width="297mm", height="210mm", print_background=True)
     b.close()
 print("done")

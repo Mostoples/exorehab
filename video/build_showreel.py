@@ -1,4 +1,4 @@
-"""Render the ExoRehab showreel: reel.html frames (Playwright) + synth music (numpy) -> MP4 (FFmpeg).
+"""Render the Exolution showreel: reel.html frames (Playwright) + synth music (numpy) -> MP4 (FFmpeg).
 usage: python video/build_showreel.py [--preview t1,t2,...] [--fps 30]"""
 import glob, http.server, os, pathlib, shutil, socketserver, subprocess, sys, threading, wave
 import numpy as np
@@ -72,11 +72,11 @@ if __name__ == "__main__":
     for old in FR.glob("*.jpg"): old.unlink()
     render([i / FPS for i in range(DUR * FPS)], lambda i, t: FR / f"f_{i:05d}.jpg")
     music(OUT / "_music.wav")
-    mp4 = OUT / "ExoRehab_Showreel_1080p.mp4"
+    mp4 = OUT / "Exolution_Showreel_1080p.mp4"
     subprocess.run([FF, "-y", "-loglevel", "error", "-framerate", str(FPS), "-i", str(FR / "f_%05d.jpg"), "-i", str(OUT / "_music.wav"),
                     "-af", "loudnorm=I=-17:TP=-1.5", "-c:v", "libx264", "-crf", "18", "-preset", "slow", "-pix_fmt", "yuv420p",
                     "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", str(mp4)], check=True)
     web = ROOT / "web" / "assets"; web.mkdir(exist_ok=True)
-    shutil.copy(mp4, web / "exorehab-showreel.mp4")
+    # the landing page uses the Blender loops; the showreel stays in output/
     shutil.copy(FR / f"f_{int(2.6 * FPS):05d}.jpg", web / "reel-poster.jpg")
     print("done", mp4)

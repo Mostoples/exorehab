@@ -1,4 +1,4 @@
-"""ExoRehab — assemble the real 3D-printed hand exoskeleton parts (blender/parts/*.stl, from 3dstl/*.3mf)
+"""Exolution — assemble the real 3D-printed hand exoskeleton parts (blender/parts/*.stl, from 3dstl/*.3mf)
 onto an MPFB (MakeHuman, CC0) mannequin and render it.
 
 Requires the MPFB extension (run Blender WITHOUT --factory-startup):

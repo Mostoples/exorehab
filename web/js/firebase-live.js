@@ -1,4 +1,4 @@
-// Firebase Realtime Database bridge for ExoRehab.
+// Firebase Realtime Database bridge for Exolution.
 // Data layout (one node per device, default "exo-01", override with ?device=exo-02):
 //   devices/{id}/live      latest packet from the exoskeleton (ESP32 or simulator), ~10 Hz
 //   devices/{id}/config    settings written by the app, read by the device
@@ -22,7 +22,7 @@ if (!params.has("rec")) {
   const db = getDatabase(app);
   const id = /^exo-\d{2}$/.test(params.get("device") || "") ? params.get("device") : "exo-01";
   const base = `devices/${id}`;
-  const warn = (e) => console.warn("[ExoRehab] Firebase:", e.message);
+  const warn = (e) => console.warn("[Exolution] Firebase:", e.message);
 
   window.EXO_FB = {
     deviceId: id,

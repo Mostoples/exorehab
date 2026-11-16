@@ -1,4 +1,4 @@
-"""ExoRehab 3D assets — procedural exoskeleton arm scene (Blender 5.x, Cycles).
+"""Exolution 3D assets — procedural exoskeleton arm scene (Blender 5.x, Cycles).
 
 blender -b --factory-startup -P blender/exo_scene.py -- --theme dark --still out.png [--angle 70]
 blender -b --factory-startup -P blender/exo_scene.py -- --theme dark --anim out_dir/ [--frames 120]
